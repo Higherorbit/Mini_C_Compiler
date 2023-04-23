@@ -95,11 +95,10 @@ extern int yydebug;
     COMMA = 301,
     QUOTE = 302,
     SLCOMMENT = 303,
-    MLCOMMENTOPEN = 304,
-    MLCOMMENTCLOSE = 305,
-    CHARFORMAT = 306,
-    INTFORMAT = 307,
-    FLOATFORMAT = 308
+    MLCOMMENT = 304,
+    CHARFORMAT = 305,
+    INTFORMAT = 306,
+    FLOATFORMAT = 307
   };
 #endif
 /* Tokens.  */
@@ -149,11 +148,10 @@ extern int yydebug;
 #define COMMA 301
 #define QUOTE 302
 #define SLCOMMENT 303
-#define MLCOMMENTOPEN 304
-#define MLCOMMENTCLOSE 305
-#define CHARFORMAT 306
-#define INTFORMAT 307
-#define FLOATFORMAT 308
+#define MLCOMMENT 304
+#define CHARFORMAT 305
+#define INTFORMAT 306
+#define FLOATFORMAT 307
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED

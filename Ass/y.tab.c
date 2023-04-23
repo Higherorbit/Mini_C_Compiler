@@ -167,11 +167,10 @@ extern int yydebug;
     COMMA = 301,
     QUOTE = 302,
     SLCOMMENT = 303,
-    MLCOMMENTOPEN = 304,
-    MLCOMMENTCLOSE = 305,
-    CHARFORMAT = 306,
-    INTFORMAT = 307,
-    FLOATFORMAT = 308
+    MLCOMMENT = 304,
+    CHARFORMAT = 305,
+    INTFORMAT = 306,
+    FLOATFORMAT = 307
   };
 #endif
 /* Tokens.  */
@@ -221,11 +220,10 @@ extern int yydebug;
 #define COMMA 301
 #define QUOTE 302
 #define SLCOMMENT 303
-#define MLCOMMENTOPEN 304
-#define MLCOMMENTCLOSE 305
-#define CHARFORMAT 306
-#define INTFORMAT 307
-#define FLOATFORMAT 308
+#define MLCOMMENT 304
+#define CHARFORMAT 305
+#define INTFORMAT 306
+#define FLOATFORMAT 307
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -545,19 +543,19 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  5
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   2
+#define YYLAST   3
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  54
+#define YYNTOKENS  53
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  4
+#define YYNNTS  3
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  5
+#define YYNRULES  3
 /* YYNSTATES -- Number of states.  */
 #define YYNSTATES  7
 
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   308
+#define YYMAXUTOK   307
 
 
 /* YYTRANSLATE(TOKEN-NUM) -- Symbol number corresponding to TOKEN-NUM
@@ -599,14 +597,14 @@ static const yytype_int8 yytranslate[] =
       15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
       25,    26,    27,    28,    29,    30,    31,    32,    33,    34,
       35,    36,    37,    38,    39,    40,    41,    42,    43,    44,
-      45,    46,    47,    48,    49,    50,    51,    52,    53
+      45,    46,    47,    48,    49,    50,    51,    52
 };
 
 #if YYDEBUG
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    17,    17,    18,    20,    22
+       0,    17,    17,    19
 };
 #endif
 
@@ -621,8 +619,8 @@ static const char *const yytname[] =
   "DEFAULT", "CONTINUE", "RETURN", "INT", "FLOAT", "CHAR", "VOID", "MAIN",
   "PRINTF", "SCANF", "NUM", "FLOATNUM", "CHARCONST", "LPAREN", "RPAREN",
   "LBRACE", "RBRACE", "LBRACKET", "RBRACKET", "SEMICOLON", "COMMA",
-  "QUOTE", "SLCOMMENT", "MLCOMMENTOPEN", "MLCOMMENTCLOSE", "CHARFORMAT",
-  "INTFORMAT", "FLOATFORMAT", "$accept", "start", "statement", "B", YY_NULLPTR
+  "QUOTE", "SLCOMMENT", "MLCOMMENT", "CHARFORMAT", "INTFORMAT",
+  "FLOATFORMAT", "$accept", "start", "statement", YY_NULLPTR
 };
 #endif
 
@@ -636,11 +634,11 @@ static const yytype_int16 yytoknum[] =
      275,   276,   277,   278,   279,   280,   281,   282,   283,   284,
      285,   286,   287,   288,   289,   290,   291,   292,   293,   294,
      295,   296,   297,   298,   299,   300,   301,   302,   303,   304,
-     305,   306,   307,   308
+     305,   306,   307
 };
 # endif
 
-#define YYPACT_NINF (-4)
+#define YYPACT_NINF (-50)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -654,7 +652,7 @@ static const yytype_int16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      -3,    -4,     1,    -3,    -4,    -4,    -4
+     -49,   -33,     2,   -50,   -46,   -50,   -50
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -662,19 +660,19 @@ static const yytype_int8 yypact[] =
      means the default is an error.  */
 static const yytype_int8 yydefact[] =
 {
-       0,     5,     0,     2,     4,     1,     3
+       0,     0,     0,     2,     0,     1,     3
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-      -4,    -1,    -4,    -4
+     -50,   -50,   -50
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     2,     3,     4
+      -1,     2,     3
 };
 
   /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -682,31 +680,31 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-       1,     5,     6
+       1,     4,     5,     6
 };
 
 static const yytype_int8 yycheck[] =
 {
-       3,     0,     3
+      49,    34,     0,    49
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,     3,    55,    56,    57,     0,    55
+       0,    49,    54,    55,    34,     0,    49
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_int8 yyr1[] =
 {
-       0,    54,    55,    55,    56,    57
+       0,    53,    54,    55
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_int8 yyr2[] =
 {
-       0,     2,     1,     2,     1,     1
+       0,     2,     1,     3
 };
 
 
@@ -1402,7 +1400,7 @@ yyreduce:
   switch (yyn)
     {
 
-#line 1406 "y.tab.c"
+#line 1404 "y.tab.c"
 
       default: break;
     }
@@ -1634,10 +1632,11 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 24 "q1.y"
+#line 21 "q1.y"
 
 void main(){
     printf("Enter the sentence:\n");
+    freopen("input.txt","r",stdin);
     yyparse();
 }
 void yyerror(){

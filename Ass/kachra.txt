@@ -1,0 +1,165 @@
+"scanf\(\"" {
+//     num_vars = 0;
+//     num_format = 0;
+//     yytext[0]=getchar();
+//     while(yytext[0]!='"'){
+//         if(yytext[0]=='%'){
+//             yytext[0]=getchar();
+//             if(yytext[0]=='c' || yytext[0]=='d' || yytext[0]=='f'){
+//                 num_format++;
+//             }
+//             else if (yytext[0]=='"'){
+//                 break;
+//             }
+//             else{
+//                 yyerror("Invalid printf statement");
+//             }
+//         }
+//         else{
+
+//         }   
+//         yytext[0]=getchar();
+//     }
+//     if(getchar()==","){
+//         yytext[0]=getchar();
+//         if(yytext[0]!='&'){
+//             yyerror("Invalid scanf statement");
+//         }
+//         yytext[0]=getchar();
+//         while(yytext[0]!=")"){
+//             if(yytext[0]==","){
+//                 num_vars++;
+//             }
+//             yytext[0]=getchar();
+//         }
+//         num_vars++;
+//     }
+//     else{
+//         ungetc(yytext[0],stdin);
+//     }
+//     if(num_vars-1==num_format){
+//         yyerror("Invalid scanf statement");
+//     }
+//     return SCANF;
+// } 
+
+
+
+
+
+alag kachra
+
+
+
+
+scanf\(\".*\); {
+    num_vars = 0;
+    num_format = 0;
+    scanf("%s\n",yytext);
+    int i = 7;
+    // write a while loop
+    // while(i<yyleng){
+    //     if 
+    // }
+    while(i<yyleng && yytext[i]!='"'){
+        // printf("Entered WHile bro");
+        if(yytext[i]=='%'){
+            printf("ghus gaye");
+            if(yytext[i +1]=='c' || yytext[i+1]=='d' || yytext[i+1]=='f'){
+                num_format++;
+            }
+            else{
+                yyerror("Invalid scanf statement");
+            }
+        }  
+        i++;
+    }
+    printf("\nNUM FORMAT %d",num_format);
+    i++;
+    printf("%c\n",yytext[i]);
+    // print the ~length of yytext
+    printf("%d\n",yyleng);
+    //  if(yytext[i]==','){
+    //     if(yytext[i+1]!='&'){
+    //         yyerror("Invalid scanf statement");
+    //     }
+    //     if(yytext[i+2] == ')') yyerror("Invalid scanf statement");
+    //     printf("ghus gaye\n");
+        while(i<yyleng-1 && yytext[i]!=')'){
+            printf("while m ghus gaye\n");
+            if(yytext[i]==','){
+                if(yytext[i+1]!='&'){
+                    yyerror("Invalid scanf statement");
+                }
+                num_vars++;
+            }
+            i++;
+         }
+     }
+    printf("\nNUM var %d",num_vars);
+    
+     if(yytext[i] != ')') {
+        yyerror("Invalid scanf statement");
+     }
+     if(num_format == 0 || num_vars!=num_format){
+        yyerror("Invalid scanf statement");
+     }
+    printf("Waleed");
+    return PRINTF;
+} 
+
+
+
+safe point
+
+printf\(\".*\"(,{ID})*\); {
+    num_vars = 0;
+    num_format = 0;
+    printf("%s\n",yytext);
+    int i = 8;
+    while(i<yyleng && yytext[i]!='"'){
+        if(yytext[i]=='%'){
+            printf("ghus gaye");
+            if(yytext[i +1]=='c' || yytext[i+1]=='d' || yytext[i+1]=='f'){
+            
+                num_format++;
+            }
+            else{
+                yyerror("Invalid printf statement");
+            }
+        }  
+        i++;
+    }
+    printf("\nNUM FORMAT %d",num_format);
+    i++;
+    printf("%c\n",yytext[i]);
+    // print the length of yytext
+    printf("%d\n",yyleng);
+     if(yytext[i]==','){
+        if(yytext[i+1] == ')') yyerror("Invalid printf statement");
+        printf("ghus gaye\n");
+         while(i<yyleng-1 && yytext[i]!=')'){
+            printf("while m ghus gaye\n");
+             if(yytext[i]==','){
+                 num_vars++;
+             }
+             i++;
+         }
+     }
+    printf("\nNUM var %d",num_vars);
+
+     if(yytext[i] != ')') {
+        yyerror("Invalid printf statement");
+     }
+     if(num_vars!=num_format){
+         
+        yyerror("Invalid printf statement");
+     }
+    printf("Waleed");
+    return PRINTF;
+} 
+
+
+
+"printf" return PRINTF;
+"scanf" return SCANF;

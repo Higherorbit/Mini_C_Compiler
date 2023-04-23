@@ -1,1 +1,7 @@
 // can numbers be fractional
+// handle \ in printf
+// what if ek hi printf line me aur kuch bhi ho?
+// printf m ek comma no var;
+
+printf("\%"); chalna chahiye
+scanf( " fs %d %d" ,&  a  ,    &bd1 ) ; //resolve space

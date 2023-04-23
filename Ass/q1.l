@@ -28,14 +28,11 @@ number of %d , %c , and %f terms in text .
     int num_format = 0;
     
 %}
-LETTER [a-zA-Z]
-DIGIT [0-9]
-
+ID [a-zA-Z][a-zA-Z0-9]*
+space [ \t\n]*
+%x MLC
 %%
-
-[LETTER][LETTER|DIGIT]* return ID; 
-
-"+" return PLUS;
+"+" {printf("plus mil gya");return PLUS;}
 "-" return MINUS;
 "*" return MULT;
 "/" return DIV;
@@ -67,8 +64,6 @@ DIGIT [0-9]
 "char" return CHAR;
 "void" return VOID;
 "main" return MAIN;
-"printf" return PRINTF;
-"scanf" return SCANF;
 
 [1-9][0-9]* return NUM;
 [0-9]*\.[0-9]+ return FLOATNUM;
@@ -83,98 +78,116 @@ DIGIT [0-9]
 \; return SEMICOLON;
 \, return COMMA;
 \" return QUOTE;
-"//" return SLCOMMENT;
-"/*" return MLCOMMENTOPEN;
-"*/" return MLCOMMENTCLOSE;
+\/\/[.^\n]*\n return SLCOMMENT;
+\/\*.*\*\/ return MLCOMMENT;
 "%c" return CHARFORMAT;
 "%d" return INTFORMAT;
 "%f" return FLOATFORMAT;
 
+{ID} {printf("ID mil gya");return ID;}
 
-"printf\(\"" {
+
+^{space}printf{space}\({space}\".*\"{space}(,{space}{ID}{space})*{space}\){space};{space} {
     num_vars = 0;
     num_format = 0;
-    yytext[0]=getchar();
-    while(yytext[0]!='"'){
-        if(yytext[0]=='%'){
-            yytext[0]=getchar();
-            if(yytext[0]=='c' || yytext[0]=='d' || yytext[0]=='f'){
+    printf("%s\n",yytext);
+    int i = 8;
+    while(i<yyleng && yytext[i]!='"'){
+        if(yytext[i]=='%'){
+            printf("ghus gaye");
+            if(yytext[i +1]=='c' || yytext[i+1]=='d' || yytext[i+1]=='f'){
+            
                 num_format++;
-            }
-            else if (yytext[0]=='"'){
-                break;
             }
             else{
                 yyerror("Invalid printf statement");
             }
-        }
-        else{
+        }  
+        i++;
+    }
+    printf("\nNUM FORMAT %d",num_format);
+    i++;
+    printf("%c\n",yytext[i]);
+    // print the length of yytext
+    printf("%d\n",yyleng);
+     if(yytext[i]==','){
+        printf("ghus gaye\n");
+         while(i<yyleng-1 && yytext[i]!=')'){
+            printf("while m ghus gaye\n");
+             if(yytext[i]==','){
+                 num_vars++;
+             }
+             i++;
+         }
+     }
+    printf("\nNUM var %d",num_vars);
 
-        }   
-        yytext[0]=getchar();
-    }
-    if(getchar()==","){
-        yytext[0]=getchar();
-        while(yytext[0]!=")"){
-            if(yytext[0]==","){
-                num_vars++;
-            }
-            yytext[0]=getchar();
-        }
-        num_vars++;
-    }
-    else{
-        ungetc(yytext[0],stdin);
-    }
-    
-    if(num_vars!=num_format){
+     if(yytext[i] != ')') {
         yyerror("Invalid printf statement");
-    }
+     }
+     if(num_vars!=num_format){
+         
+        yyerror("Invalid printf statement");
+     }
+    printf("Waleed");
     return PRINTF;
 } 
-"scanf\(\"" {
+
+
+
+^{space}scanf{space}\({space}\".*\"{space}(,{space}&{space}{ID}{space})*{space}\){space};{space} {
     num_vars = 0;
     num_format = 0;
-    yytext[0]=getchar();
-    while(yytext[0]!='"'){
-        if(yytext[0]=='%'){
-            yytext[0]=getchar();
-            if(yytext[0]=='c' || yytext[0]=='d' || yytext[0]=='f'){
+    printf("%s\n",yytext);
+    int i = 8;
+    while(i<yyleng && yytext[i]!='"'){
+        if(yytext[i]=='%'){
+            printf("ghus gaye");
+            if(yytext[i +1]=='c' || yytext[i+1]=='d' || yytext[i+1]=='f'){
                 num_format++;
             }
-            else if (yytext[0]=='"'){
-                break;
-            }
             else{
-                yyerror("Invalid printf statement");
+                yyerror("Invalid scanf statement");
             }
-        }
-        else{
-
-        }   
-        yytext[0]=getchar();
+        }  
+        i++;
     }
-    if(getchar()==","){
-        yytext[0]=getchar();
-        if(yytext[0]!='&'){
-            yyerror("Invalid scanf statement");
-        }
-        yytext[0]=getchar();
-        while(yytext[0]!=")"){
-            if(yytext[0]==","){
+    printf("\nNUM FORMAT %d",num_format);
+    i++;
+    printf("%c\n",yytext[i]);
+    // print the length of yytext
+    printf("%d\n",yyleng);
+     if(yytext[i]==','){
+        printf("ghus gaye\n");
+         while(i<yyleng-1 && yytext[i]!=')'){
+            printf("while m ghus gaye\n");
+            if(yytext[i]==','){
                 num_vars++;
             }
-            yytext[0]=getchar();
-        }
-        num_vars++;
-    }
-    else{
-        ungetc(yytext[0],stdin);
-    }
-    if(num_vars-1==num_format){
+            i++;
+         }
+     }
+    printf("\nNUM var %d",num_vars);
+
+     if(yytext[i] != ')') {
         yyerror("Invalid scanf statement");
-    }
+     }
+     if(num_vars!=num_format){
+         
+        yyerror("Invalid scanf statement");
+     }
+    printf("Waleed");
     return SCANF;
 } 
-\n return yytext;
+
+
+\/\/.*\n {return SLCOMMENT;}
+
+
+{space}"/*" BEGIN(MLC);
+<MLC>"*/"{space} {BEGIN(INITIAL); printf("MLC working"); return MLCOMMENT;}
+<MLC>.|\n {}
+
+
+\n return *yytext;
 %%

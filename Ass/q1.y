@@ -11,19 +11,17 @@ void yyerror();
 %token PRINTF SCANF
 %token NUM FLOATNUM CHARCONST 
 %token LPAREN RPAREN LBRACE RBRACE LBRACKET RBRACKET SEMICOLON COMMA
-%token QUOTE SLCOMMENT MLCOMMENTOPEN MLCOMMENTCLOSE 
+%token QUOTE SLCOMMENT MLCOMMENT
 %token CHARFORMAT INTFORMAT FLOATFORMAT  
 %%
 start : statement
-    | statement start
     ;
-statement : B
-;
-B : ID
-;
+statement : MLCOMMENT PRINTF MLCOMMENT
+    ;
 %%
 void main(){
     printf("Enter the sentence:\n");
+    freopen("input.txt","r",stdin);
     yyparse();
 }
 void yyerror(){
