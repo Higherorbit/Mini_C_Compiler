@@ -12,17 +12,24 @@ void yyerror();
 %token NUM FLOATNUM CHARCONST 
 %token LPAREN RPAREN LBRACE RBRACE LBRACKET RBRACKET SEMICOLON COMMA
 %token QUOTE SLCOMMENT MLCOMMENT
-%token CHARFORMAT INTFORMAT FLOATFORMAT  
+%token CHARFORMAT INTFORMAT FLOATFORMAT 
 %%
 start : statement
     ;
-statement : MLCOMMENT PRINTF MLCOMMENT
+statement : PLUS '\n'
+    | MINUS '\n'
+    | NUM MULT NUM '\n'
+    | LPAREN ID RPAREN '\n'
     ;
 %%
 void main(){
-    printf("Enter the sentence:\n");
+
+    printf("Enter the sentence:\n ");
     freopen("input.txt","r",stdin);
     yyparse();
+    /* printf("Symbol table \n %s %s %s",symbol_table[0][0],symbol_table[0][1],symbol_table[0][2])  ; */
+
+
 }
 void yyerror(){
     printf("Invalid Expression:\n");

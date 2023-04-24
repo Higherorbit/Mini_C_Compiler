@@ -4,4 +4,10 @@
 // printf m ek comma no var;
 
 printf("\%"); chalna chahiye
-scanf( " fs %d %d" ,&  a  ,    &bd1 ) ; //resolve space
+printf( " fs %d %d" ,  a  ,    bd1 ) ; //resolve space
+
+resolve line number issue in MLCOMMENT
+
+printf -> symbol_table entry
+
+our  names can also start with _ and $

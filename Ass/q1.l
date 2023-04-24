@@ -1,90 +1,421 @@
 %{
     #include <stdio.h>
     #include <stdlib.h>
+    #include <string.h>
+    #include <ctype.h>
     #include "y.tab.h"
-    /*
-    Lexical Analysis
-- For this phase, write a LEX program that brakes the
-input program into tokens (identifiers, operators, numbers, keywords, punctuators).
-A symbol table is created with the list of tokens obtained from the input ( no need to print
-the symbol table ).
-Further, report if any invalid printf and scanf statements are in the given program.
-A valid printf statement has one of the following structure:
- printf (“text”) where text is a non-empty string of symbols in the language alphabet.
- printf (“text”, list _ of _ variables) where text is a non-empty string of symbols in
-the language alphabet and list _ of _ variables is a nonempty sequence of variables
-separated by a comma ( , ).
-Further, the number of variables in list _ of _ variables is must be the same as the
-number of %d , %c , and %f terms in text .
-A valid scanf statement has one of the following structure:
- scanf (“text”) where text is a non-empty string of symbols in the language alphabet.
- scanf (“text”, list _ of _ variables) where text is a non-empty string of symbols in
-the language alphabet and list _ of _ variables is a nonempty sequence of variables
-separated by a comma ( , ) and each variable is preceded by & .
-Further, the number of variables in list _ of _ variables is must be the same as the
-number of %d , %c , and %f terms in text .
-    */
     int num_vars = 0;
-    int num_format = 0;
-    
+    int num_format = 0,line=1;
+    // make a symbol table of tokens and print it
+    char symbol_table[1000][3][20];
+    int si = 0;
 %}
 ID [a-zA-Z][a-zA-Z0-9]*
 space [ \t\n]*
 %x MLC
 %%
-"+" {printf("plus mil gya");return PLUS;}
-"-" return MINUS;
-"*" return MULT;
-"/" return DIV;
-"%" return MOD;
-"=" return EQUAL;
-"==" return EQUALS;
-"!=" return NOTEQ;
-"<" return LT;
-">" return GT;
-"<=" return LTE;
-">=" return GTE;
-"&&" return LAND;
-"||" return LOR;
-"!" return LNOT;
+<<EOF>> {
+    for(int i = 0;i<si;i++){
+        printf("%s %s %s\n",symbol_table[i][0],symbol_table[i][1],symbol_table[i][2]);
+    }
+    // return END_OF_FILE;
+    return 0;
+}
+"+" {
+    sprintf(symbol_table[si][0],"%d",line);
+    strcpy(symbol_table[si][1] , "+");
+    strcpy(symbol_table[si][2] ,"PLUS");
+    si++;
+    return PLUS;
+}
 
 
-"if" return IF;
-"else" return ELSE;
-"while" return WHILE;
-"for" return FOR;
-"switch" return SWITCH;
-"case" return CASE;
-"default" return DEFAULT;
-"break" return BREAK;
-"continue" return CONTINUE;
-"return" return RETURN;
-"int" return INT;
-"float" return FLOAT;
-"char" return CHAR;
-"void" return VOID;
-"main" return MAIN;
+"-" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "-");
+    strcpy(symbol_table[si][2], "MINUS");
+    si++;
+    return MINUS;
+}
 
-[1-9][0-9]* return NUM;
-[0-9]*\.[0-9]+ return FLOATNUM;
-"\'[a-zA-Z0-9]\'" return CHARCONST;
+"*" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "*");
+    strcpy(symbol_table[si][2], "MULT");
+    si++;
+    return MULT;
+}
 
-\( return LPAREN;
-\) return RPAREN;
-\{ return LBRACE;
-\} return RBRACE;
-\[ return LBRACKET;
-\] return RBRACKET;
-\; return SEMICOLON;
-\, return COMMA;
-\" return QUOTE;
-\/\/[.^\n]*\n return SLCOMMENT;
-\/\*.*\*\/ return MLCOMMENT;
-"%c" return CHARFORMAT;
-"%d" return INTFORMAT;
-"%f" return FLOATFORMAT;
+"/" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "/");
+    strcpy(symbol_table[si][2], "DIV");
+    si++;
+    return DIV;
+}
 
-{ID} {printf("ID mil gya");return ID;}
+"%" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "%");
+    strcpy(symbol_table[si][2], "MOD");
+    si++;
+    return MOD;
+}
+
+"=" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "=");
+    strcpy(symbol_table[si][2], "EQUAL");
+    si++;
+    return EQUAL;
+}
+
+"==" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "==");
+    strcpy(symbol_table[si][2], "EQUALS");
+    si++;
+    return EQUALS;
+}
+
+"!=" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "!=");
+    strcpy(symbol_table[si][2], "NOTEQ");
+    si++;
+    return NOTEQ;
+}
+
+"<" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "<");
+    strcpy(symbol_table[si][2], "LT");
+    si++;
+    return LT;
+}
+
+">" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], ">");
+    strcpy(symbol_table[si][2], "GT");
+    si++;
+    return GT;
+}
+
+"<=" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "<=");
+    strcpy(symbol_table[si][2], "LTE");
+    si++;
+    return LTE;
+}
+
+">=" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], ">=");
+    strcpy(symbol_table[si][2], "GTE");
+    si++;
+    return GTE;
+}
+
+"&&" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "&&");
+    strcpy(symbol_table[si][2], "LAND");
+    si++;
+    return LAND;
+}
+
+"||" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "||");
+    strcpy(symbol_table[si][2], "LOR");
+    si++;
+    return LOR;
+}
+
+"!" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "!");
+    strcpy(symbol_table[si][2], "LNOT");
+    si++;
+    return LNOT;
+}
+
+"if" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "if");
+    strcpy(symbol_table[si][2], "IF");
+    si++;
+    return IF;
+}
+
+"else" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "else");
+    strcpy(symbol_table[si][2], "ELSE");
+    si++;
+    return ELSE;
+}
+
+"while" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "while");
+    strcpy(symbol_table[si][2], "WHILE");
+    si++;
+    return WHILE;
+}
+
+"for" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "for");
+    strcpy(symbol_table[si][2], "FOR");
+    si++;
+    return FOR;
+}
+
+"switch" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "switch");
+    strcpy(symbol_table[si][2], "SWITCH");
+    si++;
+    return SWITCH;
+}
+
+"case" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "case");
+    strcpy(symbol_table[si][2], "CASE");
+    si++;
+    return CASE;
+}
+
+"default" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "default");
+    strcpy(symbol_table[si][2], "DEFAULT");
+    si++;
+    return DEFAULT;
+}
+
+"break" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "break");
+    strcpy(symbol_table[si][2], "BREAK");
+    si++;
+    return BREAK;
+}
+
+"continue" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "continue");
+    strcpy(symbol_table[si][2], "CONTINUE");
+    si++;
+    return CONTINUE;
+}
+
+"return" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "return");
+    strcpy(symbol_table[si][2], "RETURN");
+    si++;
+    return RETURN;
+}
+
+"int" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "int");
+    strcpy(symbol_table[si][2], "INT");
+    si++;
+    return INT;
+}
+
+"float" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "float");
+    strcpy(symbol_table[si][2], "FLOAT");
+    si++;
+    return FLOAT;
+}
+
+"char" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "char");
+    strcpy(symbol_table[si][2], "CHAR");
+    si++;
+    return CHAR;
+}
+
+"void" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "void");
+    strcpy(symbol_table[si][2], "VOID");
+    si++;
+    return VOID;
+}
+
+"main" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "main");
+    strcpy(symbol_table[si][2], "MAIN");
+    si++;
+    return MAIN;
+}
+
+
+
+[1-9][0-9]* {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], yytext);
+    strcpy(symbol_table[si][2], "NUM");
+    si++;
+    return NUM;
+}
+[0-9]*\.[0-9]+ {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], yytext);
+    strcpy(symbol_table[si][2], "FLOATNUM");
+    si++;
+    return FLOATNUM;
+}
+"\'[a-zA-Z0-9]\'" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], yytext);
+    strcpy(symbol_table[si][2], "CHARCONST");
+    si++;
+    return CHARCONST;
+}
+
+
+
+"(" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "(");
+    strcpy(symbol_table[si][2], "LPAREN");
+    si++;
+    return LPAREN;
+}
+
+")" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], ")");
+    strcpy(symbol_table[si][2], "RPAREN");
+    si++;
+    return RPAREN;
+}
+
+"{" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "{");
+    strcpy(symbol_table[si][2], "LBRACE");
+    si++;
+    return LBRACE;
+}
+
+"}" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "}");
+    strcpy(symbol_table[si][2], "RBRACE");
+    si++;
+    return RBRACE;
+}
+
+"[" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "[");
+    strcpy(symbol_table[si][2], "LBRACKET");
+    si++;
+    return LBRACKET;
+}
+
+"]" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "]");
+    strcpy(symbol_table[si][2], "RBRACKET");
+    si++;
+    return RBRACKET;
+}
+
+";" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], ";");
+    strcpy(symbol_table[si][2], "SEMICOLON");
+    si++;
+    return SEMICOLON;
+}
+
+"," {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], ",");
+    strcpy(symbol_table[si][2], "COMMA");
+    si++;
+    return COMMA;
+}
+
+"\"" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "\"");
+    strcpy(symbol_table[si][2], "QUOTE");
+    si++;
+    return QUOTE;
+}
+
+
+\/\/[.^\n]*\n {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "yytext");
+    strcpy(symbol_table[si][2], "SLCOMMENT");
+    si++;
+    return SLCOMMENT;
+}
+
+
+
+{space}"/*" BEGIN(MLC);
+<MLC>"*/"{space} {
+    BEGIN(INITIAL); 
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], yytext);
+    strcpy(symbol_table[si][2], "MLCOMMENT");
+    si++;
+    return MLCOMMENT;}
+<MLC>.|\n {}
+
+
+"%c" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "%c");
+    strcpy(symbol_table[si][2], "CHARFORMAT");
+    si++;
+    return CHARFORMAT;
+}
+
+"%d" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "%d");
+    strcpy(symbol_table[si][2], "INTFORMAT");
+    si++;
+    return INTFORMAT;
+}
+
+"%f" {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "%f");
+    strcpy(symbol_table[si][2], "FLOATFORMAT");
+    si++;
+    return FLOATFORMAT;
+}
+
+
+
+{ID} {
+    
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], yytext);
+    strcpy(symbol_table[si][2], "ID");
+    si++;
+    return ID;
+}
 
 
 ^{space}printf{space}\({space}\".*\"{space}(,{space}{ID}{space})*{space}\){space};{space} {
@@ -133,8 +464,6 @@ space [ \t\n]*
     return PRINTF;
 } 
 
-
-
 ^{space}scanf{space}\({space}\".*\"{space}(,{space}&{space}{ID}{space})*{space}\){space};{space} {
     num_vars = 0;
     num_format = 0;
@@ -178,16 +507,11 @@ space [ \t\n]*
      }
     printf("Waleed");
     return SCANF;
-} 
+}
 
 
-\/\/.*\n {return SLCOMMENT;}
 
 
-{space}"/*" BEGIN(MLC);
-<MLC>"*/"{space} {BEGIN(INITIAL); printf("MLC working"); return MLCOMMENT;}
-<MLC>.|\n {}
 
-
-\n return *yytext;
+\n {line++;return *yytext;}
 %%

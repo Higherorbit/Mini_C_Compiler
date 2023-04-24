@@ -163,3 +163,66 @@ printf\(\".*\"(,{ID})*\); {
 
 "printf" return PRINTF;
 "scanf" return SCANF;
+
+
+24 tareek ka kachra
+
+"-" return MINUS;
+"*" return MULT;
+"/" return DIV;
+"%" return MOD;
+"=" return EQUAL;
+"==" return EQUALS;
+"!=" return NOTEQ;
+"<" return LT;
+">" return GT;
+"<=" return LTE;
+">=" return GTE;
+"&&" return LAND;
+"||" return LOR;
+"!" return LNOT;
+
+
+
+
+"if" return IF;
+"else" return ELSE;
+"while" return WHILE;
+"for" return FOR;
+"switch" return SWITCH;
+"case" return CASE;
+"default" return DEFAULT;
+"break" return BREAK;
+"continue" return CONTINUE;
+"return" return RETURN;
+"int" return INT;
+"float" return FLOAT;
+"char" return CHAR;
+"void" return VOID;
+"main" return MAIN;
+
+\/\/.*\n {return SLCOMMENT;}
+
+
+\( return LPAREN;
+\) return RPAREN;
+\{ return LBRACE;
+\} return RBRACE;
+\[ return LBRACKET;
+\] return RBRACKET;
+\; return SEMICOLON;
+\, return COMMA;
+\" return QUOTE;
+\/\/[.^\n]*\n return SLCOMMENT;
+\/\*.*\*\/ return MLCOMMENT;
+"%c" return CHARFORMAT;
+"%d" return INTFORMAT;
+"%f" return FLOATFORMAT;
+
+\/\*.*\*\/ {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], yytext);
+    strcpy(symbol_table[si][2], "MLCOMMENT");
+    si++;
+    return MLCOMMENT;
+}
