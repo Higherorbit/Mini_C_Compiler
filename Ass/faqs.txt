@@ -1,0 +1,6 @@
+Q: For assignment will operators such as &=, |=, %=, *=, /=, +=, -=, ++, -- also be included?
+
+A: NO, 
+
+
+scope of variables implement

@@ -13,13 +13,11 @@ void yyerror();
 %token LPAREN RPAREN LBRACE RBRACE LBRACKET RBRACKET SEMICOLON COMMA
 %token QUOTE SLCOMMENT MLCOMMENT
 %token CHARFORMAT INTFORMAT FLOATFORMAT 
+%token ARR FUNC TDARR
 %%
 start : statement
     ;
-statement : PLUS '\n'
-    | MINUS '\n'
-    | NUM MULT NUM '\n'
-    | LPAREN ID RPAREN '\n'
+statement : FUNC
     ;
 %%
 void main(){

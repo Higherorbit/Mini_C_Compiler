@@ -98,7 +98,10 @@ extern int yydebug;
     MLCOMMENT = 304,
     CHARFORMAT = 305,
     INTFORMAT = 306,
-    FLOATFORMAT = 307
+    FLOATFORMAT = 307,
+    ARR = 308,
+    FUNC = 309,
+    TDARR = 310
   };
 #endif
 /* Tokens.  */
@@ -152,6 +155,9 @@ extern int yydebug;
 #define CHARFORMAT 305
 #define INTFORMAT 306
 #define FLOATFORMAT 307
+#define ARR 308
+#define FUNC 309
+#define TDARR 310
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED

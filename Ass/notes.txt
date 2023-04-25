@@ -8,6 +8,13 @@ printf( " fs %d %d" ,  a  ,    bd1 ) ; //resolve space
 
 resolve line number issue in MLCOMMENT
 
-printf -> symbol_table entry
+printf -> symbol_table entry 
 
-our  names can also start with _ and $
+our  names can also start with _ and $ (done)
+
+should we get our arrays checked for out of bounds error?
+
+should we check for division by zero?
+should we give ARR as token or not in the symbol_table?
+
+ki array alag alag lines me daal skte hai

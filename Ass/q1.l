@@ -10,8 +10,19 @@
     char symbol_table[1000][3][20];
     int si = 0;
 %}
-ID [a-zA-Z][a-zA-Z0-9]*
-space [ \t\n]*
+INT "int"
+VOID "void"
+FLOAT "float"
+CHAR "char"
+NEWLINE \n
+ID [_$a-zA-Z][_$a-zA-Z0-9]*
+NUM [0-9][1-9]*|0
+space [ \t]*
+spaceCOMP [ \t\n]+
+alpha [A-Za-z]
+digit [0-9]
+und "_"
+
 %x MLC
 %%
 <<EOF>> {
@@ -21,6 +32,32 @@ space [ \t\n]*
     // return END_OF_FILE;
     return 0;
 }
+{space}({VOID}|{INT}|{FLOAT}|{CHAR}){spaceCOMP}{ID}{space}\([,]* ({INT}|{FLOAT}|{CHAR}) {space}{ID}{space}\){space}{
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], yytext);
+    strcpy(symbol_table[si][2], "FUNC");
+    si++;
+    return FUNC;
+}
+
+^{space}({INT}|{FLOAT}|{CHAR}){spaceCOMP}{ID}{space}\[{NUM}\]{space}\[{NUM}\]{space}; {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], yytext);
+    strcpy(symbol_table[si][2], "TDARR");
+    si++;
+    return TDARR;
+}
+{space}({INT}|{FLOAT}|{CHAR}){spaceCOMP}{ID}{space}\[{NUM}\]{space};{space} {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], yytext);
+    strcpy(symbol_table[si][2], "ARR");
+    si++;
+
+    return ARR;
+}
+
+
+
 "+" {
     sprintf(symbol_table[si][0],"%d",line);
     strcpy(symbol_table[si][1] , "+");
@@ -221,7 +258,7 @@ space [ \t\n]*
     return RETURN;
 }
 
-"int" {
+{INT} {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "int");
     strcpy(symbol_table[si][2], "INT");
@@ -229,7 +266,7 @@ space [ \t\n]*
     return INT;
 }
 
-"float" {
+{FLOAT} {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "float");
     strcpy(symbol_table[si][2], "FLOAT");
@@ -237,7 +274,7 @@ space [ \t\n]*
     return FLOAT;
 }
 
-"char" {
+{CHAR} {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "char");
     strcpy(symbol_table[si][2], "CHAR");
@@ -261,8 +298,6 @@ space [ \t\n]*
     return MAIN;
 }
 
-
-
 [1-9][0-9]* {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], yytext);
@@ -284,8 +319,6 @@ space [ \t\n]*
     si++;
     return CHARCONST;
 }
-
-
 
 "(" {
     sprintf(symbol_table[si][0], "%d", line);
@@ -359,7 +392,6 @@ space [ \t\n]*
     return QUOTE;
 }
 
-
 \/\/[.^\n]*\n {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "yytext");
@@ -367,8 +399,6 @@ space [ \t\n]*
     si++;
     return SLCOMMENT;
 }
-
-
 
 {space}"/*" BEGIN(MLC);
 <MLC>"*/"{space} {
@@ -405,8 +435,6 @@ space [ \t\n]*
     return FLOATFORMAT;
 }
 
-
-
 {ID} {
     
     sprintf(symbol_table[si][0], "%d", line);
@@ -415,7 +443,6 @@ space [ \t\n]*
     si++;
     return ID;
 }
-
 
 ^{space}printf{space}\({space}\".*\"{space}(,{space}{ID}{space})*{space}\){space};{space} {
     num_vars = 0;
@@ -507,10 +534,6 @@ space [ \t\n]*
     printf("Waleed");
     return SCANF;
 }
-
-
-
-
 
 \n {line++;return *yytext;}
 %%

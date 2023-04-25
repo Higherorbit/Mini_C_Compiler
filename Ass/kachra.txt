@@ -226,3 +226,30 @@ printf\(\".*\"(,{ID})*\); {
     si++;
     return MLCOMMENT;
 }
+
+
+
+// 25th ka kachra
+{ID}{space}{ID}* \[{NUM}\]\[{NUM}\]{
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], yytext);
+    strcpy(symbol_table[si][2], "2D_ARR");
+    si++;
+    return 2D_ARR;
+}
+
+{ID}{ID}* \({ID} {ID}*\) {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], yytext);
+    strcpy(symbol_table[si][2], "FUNC");
+    si++;
+    return FUNC;
+}
+
+({INT}|{FLOAT}|{CHAR}) {space} {ID} {space} \[{space}{NUM}{space} \]{
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], yytext);
+    strcpy(symbol_table[si][2], "ARR");
+    si++;
+    return ARR;
+}
