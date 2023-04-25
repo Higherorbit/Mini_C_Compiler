@@ -29,7 +29,6 @@ space [ \t\n]*
     return PLUS;
 }
 
-
 "-" {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "-");
@@ -515,3 +514,4 @@ space [ \t\n]*
 
 \n {line++;return *yytext;}
 %%
+
