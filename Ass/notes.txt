@@ -18,3 +18,7 @@ should we check for division by zero?
 should we give ARR as token or not in the symbol_table?
 
 ki array alag alag lines me daal skte hai
+
+printf("%d",a[20][30]);  abhi nahi chalta hai
+
+Printf m symbol table m tokens alag alag nikalne h puri line token nahi h.

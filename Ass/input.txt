@@ -1,1 +1,2 @@
-int solve(int a, int b)
+int saman;
+int khushil;

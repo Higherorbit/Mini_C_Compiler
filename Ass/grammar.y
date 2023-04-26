@@ -29,16 +29,16 @@ expr: const|ID|
     LPAREN expr RPAREN
     ;
 assn: ID EQUAL expr SEMICOLON;
+
 const: NUM | FLOATNUM | CHARCONST;
 
-control_stmts : if | for | while | switch;
+control_stmts : if | FOR | WHILE | SWITCH;
 
 if : IF LPAREN expr RPAREN compstmt optionalelse;
 optionalelse : ELSE compstmt|
                ELSE IF compstmt
              ;
 
-while : WHILE LPAREN control_expr RPAREN compstmt;
 
 
 

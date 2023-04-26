@@ -4,7 +4,7 @@
 int yylex();
 void yyerror();
 %}
-%token ID PLUS MINUS MULT DIV MOD
+%token ID ID1 ID2 PLUS MINUS MULT DIV MOD
 %token EQUAL NOTEQ LT GT LTE GTE LAND LOR LNOT EQUALS
 %token IF ELSE WHILE FOR SWITCH CASE BREAK DEFAULT CONTINUE RETURN 
 %token INT FLOAT CHAR VOID MAIN 
@@ -17,12 +17,13 @@ void yyerror();
 %%
 start : statement
     ;
-statement : FUNC
+statement : INT ID SEMICOLON '\n' INT ID SEMICOLON
     ;
+;
 %%
 void main(){
 
-    printf("Enter the sentence:\n ");
+    printf("\nOUTPUT:\n ");
     freopen("input.txt","r",stdin);
     yyparse();
     /* printf("Symbol table \n %s %s %s",symbol_table[0][0],symbol_table[0][1],symbol_table[0][2])  ; */

@@ -50,114 +50,118 @@ extern int yydebug;
   enum yytokentype
   {
     ID = 258,
-    PLUS = 259,
-    MINUS = 260,
-    MULT = 261,
-    DIV = 262,
-    MOD = 263,
-    EQUAL = 264,
-    NOTEQ = 265,
-    LT = 266,
-    GT = 267,
-    LTE = 268,
-    GTE = 269,
-    LAND = 270,
-    LOR = 271,
-    LNOT = 272,
-    EQUALS = 273,
-    IF = 274,
-    ELSE = 275,
-    WHILE = 276,
-    FOR = 277,
-    SWITCH = 278,
-    CASE = 279,
-    BREAK = 280,
-    DEFAULT = 281,
-    CONTINUE = 282,
-    RETURN = 283,
-    INT = 284,
-    FLOAT = 285,
-    CHAR = 286,
-    VOID = 287,
-    MAIN = 288,
-    PRINTF = 289,
-    SCANF = 290,
-    NUM = 291,
-    FLOATNUM = 292,
-    CHARCONST = 293,
-    LPAREN = 294,
-    RPAREN = 295,
-    LBRACE = 296,
-    RBRACE = 297,
-    LBRACKET = 298,
-    RBRACKET = 299,
-    SEMICOLON = 300,
-    COMMA = 301,
-    QUOTE = 302,
-    SLCOMMENT = 303,
-    MLCOMMENT = 304,
-    CHARFORMAT = 305,
-    INTFORMAT = 306,
-    FLOATFORMAT = 307,
-    ARR = 308,
-    FUNC = 309,
-    TDARR = 310
+    ID1 = 259,
+    ID2 = 260,
+    PLUS = 261,
+    MINUS = 262,
+    MULT = 263,
+    DIV = 264,
+    MOD = 265,
+    EQUAL = 266,
+    NOTEQ = 267,
+    LT = 268,
+    GT = 269,
+    LTE = 270,
+    GTE = 271,
+    LAND = 272,
+    LOR = 273,
+    LNOT = 274,
+    EQUALS = 275,
+    IF = 276,
+    ELSE = 277,
+    WHILE = 278,
+    FOR = 279,
+    SWITCH = 280,
+    CASE = 281,
+    BREAK = 282,
+    DEFAULT = 283,
+    CONTINUE = 284,
+    RETURN = 285,
+    INT = 286,
+    FLOAT = 287,
+    CHAR = 288,
+    VOID = 289,
+    MAIN = 290,
+    PRINTF = 291,
+    SCANF = 292,
+    NUM = 293,
+    FLOATNUM = 294,
+    CHARCONST = 295,
+    LPAREN = 296,
+    RPAREN = 297,
+    LBRACE = 298,
+    RBRACE = 299,
+    LBRACKET = 300,
+    RBRACKET = 301,
+    SEMICOLON = 302,
+    COMMA = 303,
+    QUOTE = 304,
+    SLCOMMENT = 305,
+    MLCOMMENT = 306,
+    CHARFORMAT = 307,
+    INTFORMAT = 308,
+    FLOATFORMAT = 309,
+    ARR = 310,
+    FUNC = 311,
+    TDARR = 312
   };
 #endif
 /* Tokens.  */
 #define ID 258
-#define PLUS 259
-#define MINUS 260
-#define MULT 261
-#define DIV 262
-#define MOD 263
-#define EQUAL 264
-#define NOTEQ 265
-#define LT 266
-#define GT 267
-#define LTE 268
-#define GTE 269
-#define LAND 270
-#define LOR 271
-#define LNOT 272
-#define EQUALS 273
-#define IF 274
-#define ELSE 275
-#define WHILE 276
-#define FOR 277
-#define SWITCH 278
-#define CASE 279
-#define BREAK 280
-#define DEFAULT 281
-#define CONTINUE 282
-#define RETURN 283
-#define INT 284
-#define FLOAT 285
-#define CHAR 286
-#define VOID 287
-#define MAIN 288
-#define PRINTF 289
-#define SCANF 290
-#define NUM 291
-#define FLOATNUM 292
-#define CHARCONST 293
-#define LPAREN 294
-#define RPAREN 295
-#define LBRACE 296
-#define RBRACE 297
-#define LBRACKET 298
-#define RBRACKET 299
-#define SEMICOLON 300
-#define COMMA 301
-#define QUOTE 302
-#define SLCOMMENT 303
-#define MLCOMMENT 304
-#define CHARFORMAT 305
-#define INTFORMAT 306
-#define FLOATFORMAT 307
-#define ARR 308
-#define FUNC 309
-#define TDARR 310
+#define ID1 259
+#define ID2 260
+#define PLUS 261
+#define MINUS 262
+#define MULT 263
+#define DIV 264
+#define MOD 265
+#define EQUAL 266
+#define NOTEQ 267
+#define LT 268
+#define GT 269
+#define LTE 270
+#define GTE 271
+#define LAND 272
+#define LOR 273
+#define LNOT 274
+#define EQUALS 275
+#define IF 276
+#define ELSE 277
+#define WHILE 278
+#define FOR 279
+#define SWITCH 280
+#define CASE 281
+#define BREAK 282
+#define DEFAULT 283
+#define CONTINUE 284
+#define RETURN 285
+#define INT 286
+#define FLOAT 287
+#define CHAR 288
+#define VOID 289
+#define MAIN 290
+#define PRINTF 291
+#define SCANF 292
+#define NUM 293
+#define FLOATNUM 294
+#define CHARCONST 295
+#define LPAREN 296
+#define RPAREN 297
+#define LBRACE 298
+#define RBRACE 299
+#define LBRACKET 300
+#define RBRACKET 301
+#define SEMICOLON 302
+#define COMMA 303
+#define QUOTE 304
+#define SLCOMMENT 305
+#define MLCOMMENT 306
+#define CHARFORMAT 307
+#define INTFORMAT 308
+#define FLOATFORMAT 309
+#define ARR 310
+#define FUNC 311
+#define TDARR 312
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED

@@ -17,34 +17,33 @@ CHAR "char"
 NEWLINE \n
 ID [_a-zA-Z][_a-zA-Z0-9]*
 PRINTFID [_a-zA-Z][_a-zA-Z0-9]*['['{NUM}']']*
-NUM [0-9][1-9]*|0|" "
+NUM [0-9][1-9]*|0
 space [ \t]*
 spaceCOMP [ \t\n]+
 alpha [A-Za-z]
 digit [0-9]
 und "_"
 STRING [\" [a-zA-Z0-9_%] \"]
+PRINTF'('STRING')'
+
 
 %x MLC
 %%
 <<EOF>> {
     printf("Symbol Table:\n");
+
     for(int i = 0;i<si;i++){
         printf("%s %s %s\n",symbol_table[i][0],symbol_table[i][1],symbol_table[i][2]);
     }
     // return END_OF_FILE;
     return 0;
 }
-[_a-zA-Z][_a-zA-Z0-9]*\(.*\) {
-    printf("FUNC mei\n");
-    sprintf(symbol_table[si][0],"%d", line);
-    strcpy(symbol_table[si][1], yytext);
-    strcpy(symbol_table[si][2], "FUNC");
-    si++;
-    printf("%s\n",yytext);
+[_a-zA-z]+\(.*\)  {
+    printf("A rha hai kya");
     REJECT;
     return FUNC;
 }
+
 [_a-zA-Z][_a-zA-Z0-9]*\[{NUM}\] {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], yytext);
@@ -59,6 +58,7 @@ STRING [\" [a-zA-Z0-9_%] \"]
     si++;
     return ID2;
 }
+
 
 "+" {
     sprintf(symbol_table[si][0],"%d",line);
@@ -261,7 +261,6 @@ STRING [\" [a-zA-Z0-9_%] \"]
 }
 
 {INT} {
-    printf("INT\n");
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "int");
     strcpy(symbol_table[si][2], "INT");
@@ -324,12 +323,10 @@ STRING [\" [a-zA-Z0-9_%] \"]
 }
 
 "(" {
-    printf("(");
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "(");
     strcpy(symbol_table[si][2], "LPAREN");
     si++;
-    printf("LPAREN\n");
     return LPAREN;
 }
 
@@ -442,14 +439,14 @@ STRING [\" [a-zA-Z0-9_%] \"]
 }
 
 {ID} {
-    printf("ID\n");
-    printf("%s",yytext);
+    
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], yytext);
     strcpy(symbol_table[si][2], "ID");
     si++;
     return ID;
 }
+
 
 'printf' {
     sprintf(symbol_table[si][0], "%d", line);
@@ -458,6 +455,7 @@ STRING [\" [a-zA-Z0-9_%] \"]
     si++;
     return PRINTF;
 }
+
 
 ^{space}scanf{space}\({space}\".*\"{space}(,{space}&{space}{ID}{space})*{space}\){space};{space} {
     num_vars = 0;
@@ -507,3 +505,12 @@ STRING [\" [a-zA-Z0-9_%] \"]
 \n {line++;return *yytext;}
 %%
 
+int main(){
+    yyin = fopen("input.txt","r");
+    yylex();
+    printf("Line\tLexeme\t\tToken\n");
+    for(int i=0;i<si;i++){
+        printf("%s\t%s\t\t%s\n",symbol_table[i][0],symbol_table[i][1],symbol_table[i][2]);
+    }
+    return 0;
+}

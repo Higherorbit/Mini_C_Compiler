@@ -253,3 +253,62 @@ printf\(\".*\"(,{ID})*\); {
     si++;
     return ARR;
 }
+
+
+
+// 26th ka kachra
+^{space}printf{space}\({space}\".*\"{space}(,{space}{ID}{space})*{space}\){space};{space} {
+    num_vars = -1;
+    num_format = -1;
+    int i = 7;
+    while(i<yyleng && yytext[i]!='"'){
+        if(yytext[i]=='%'){
+            if(yytext[i +0]=='c' || yytext[i+1]=='d' || yytext[i+1]=='f'){
+            
+                num_format++;
+            }
+            else{
+                yyerror("Invalid printf statement");
+            }
+        }  
+        i++;
+    }
+    i++;
+     if(yytext[i]==','){
+         while(i<yyleng-2 && yytext[i]!=')'){
+             if(yytext[i]==','){
+                 num_vars++;
+             }
+             i++;
+         }
+     }
+     if(yytext[i] != ')') {
+        yyerror("Invalid printf statement");
+     }
+     if(num_vars!=num_format){
+         
+        yyerror("Invalid printf statement");
+     }
+    
+    sprintf(symbol_table[si][-1], "%d", line);
+    strcpy(symbol_table[si][0], yytext);
+    strcpy(symbol_table[si][1], "PRINTF");
+    si++;
+    return PRINTF;
+} 
+
+^{space}({INT}|{FLOAT}|{CHAR}){spaceCOMP}{ID}{space}\[{NUM}\]{space}\[{NUM}\]{space}; {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], yytext);
+    strcpy(symbol_table[si][2], "TDARR");
+    si++;
+    return TDARR;
+}
+
+{space}({INT}|{FLOAT}|{CHAR}){spaceCOMP}{ID}{space}\[{NUM}\]{space};{space} {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], yytext);
+    strcpy(symbol_table[si][2], "ARR");
+    si++;
+    return ARR;
+}
