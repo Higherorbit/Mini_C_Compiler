@@ -61,6 +61,7 @@ STRING [\" [a-zA-Z0-9_%] \"]
 }
 
 "+" {
+    printf("Idhar luv hai\n");
     sprintf(symbol_table[si][0],"%d",line);
     strcpy(symbol_table[si][1] , "+");
     strcpy(symbol_table[si][2] ,"PLUS");

@@ -87,23 +87,28 @@ extern int yydebug;
     NUM = 293,
     FLOATNUM = 294,
     CHARCONST = 295,
-    LPAREN = 296,
-    RPAREN = 297,
-    LBRACE = 298,
-    RBRACE = 299,
-    LBRACKET = 300,
-    RBRACKET = 301,
-    SEMICOLON = 302,
-    COMMA = 303,
-    QUOTE = 304,
-    SLCOMMENT = 305,
-    MLCOMMENT = 306,
-    CHARFORMAT = 307,
-    INTFORMAT = 308,
-    FLOATFORMAT = 309,
-    ARR = 310,
-    FUNC = 311,
-    TDARR = 312
+    CONST_SIGNED = 296,
+    LPAREN = 297,
+    RPAREN = 298,
+    LBRACE = 299,
+    RBRACE = 300,
+    LBRACKET = 301,
+    RBRACKET = 302,
+    SEMICOLON = 303,
+    COMMA = 304,
+    QUOTE = 305,
+    SLCOMMENT = 306,
+    MLCOMMENT = 307,
+    CHARFORMAT = 308,
+    INTFORMAT = 309,
+    FLOATFORMAT = 310,
+    ARR = 311,
+    FUNC = 312,
+    TDARR = 313,
+    ARR_EHAI = 314,
+    SPACE = 315,
+    ASSIGNMENT = 316,
+    STRING = 317
   };
 #endif
 /* Tokens.  */
@@ -145,23 +150,28 @@ extern int yydebug;
 #define NUM 293
 #define FLOATNUM 294
 #define CHARCONST 295
-#define LPAREN 296
-#define RPAREN 297
-#define LBRACE 298
-#define RBRACE 299
-#define LBRACKET 300
-#define RBRACKET 301
-#define SEMICOLON 302
-#define COMMA 303
-#define QUOTE 304
-#define SLCOMMENT 305
-#define MLCOMMENT 306
-#define CHARFORMAT 307
-#define INTFORMAT 308
-#define FLOATFORMAT 309
-#define ARR 310
-#define FUNC 311
-#define TDARR 312
+#define CONST_SIGNED 296
+#define LPAREN 297
+#define RPAREN 298
+#define LBRACE 299
+#define RBRACE 300
+#define LBRACKET 301
+#define RBRACKET 302
+#define SEMICOLON 303
+#define COMMA 304
+#define QUOTE 305
+#define SLCOMMENT 306
+#define MLCOMMENT 307
+#define CHARFORMAT 308
+#define INTFORMAT 309
+#define FLOATFORMAT 310
+#define ARR 311
+#define FUNC 312
+#define TDARR 313
+#define ARR_EHAI 314
+#define SPACE 315
+#define ASSIGNMENT 316
+#define STRING 317
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED

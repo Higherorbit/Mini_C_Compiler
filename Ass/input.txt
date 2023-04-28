@@ -1,2 +1,1 @@
-int saman;
-int khushil;
+a+b-c*(g-j /k);
