@@ -44,6 +44,8 @@ STRING [a-zA-Z0-9_%]
     return ID2;
 }
 
+{NEWLINE} {line++;}
+
 "++" {
     printf("PLUSPLUS\n");
     sprintf(symbol_table[si][0],"%d",line);

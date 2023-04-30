@@ -20,7 +20,7 @@ void yyerror();
 %%
 start : statement
     ;
-statement : FUNCTION
+statement : FUNCTION statement | FUNCTION
     ;
 TYPE: INT | FLOAT | CHAR | VOID
     ;

@@ -351,8 +351,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 57
-#define YY_END_OF_BUFFER 58
+#define YY_NUM_RULES 58
+#define YY_END_OF_BUFFER 59
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -362,26 +362,26 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[185] =
     {   0,
-        0,    0,    0,    0,   58,   57,   57,   56,   17,   57,
-        7,   57,   57,   35,   36,    5,    3,   43,    4,   57,
-        6,   57,   32,   41,   11,    8,   12,   52,   39,   40,
-       52,   52,   52,   52,   52,   52,   52,   52,   52,   52,
-       52,   37,   57,   38,   57,   52,   48,   47,   48,    0,
-        0,   10,    0,   55,   49,   50,   51,   15,    0,    2,
-       33,   45,    0,    0,    0,   32,   13,    9,   14,   52,
-        0,   52,   52,   52,   52,   52,   52,   52,   52,   18,
-       52,   52,   52,   52,   52,   52,   16,    0,    0,   52,
-       46,    0,   44,    0,    0,    0,    0,   52,   52,   52,
+        0,    0,    0,    0,   59,   58,   58,    2,   18,   58,
+        8,   58,   58,   36,   37,    6,    4,   44,    5,   58,
+        7,   58,   33,   42,   12,    9,   13,   53,   40,   41,
+       53,   53,   53,   53,   53,   53,   53,   53,   53,   53,
+       53,   38,   58,   39,   58,   53,   49,   48,   49,    0,
+        0,   11,    0,   56,   50,   51,   52,   16,    0,    3,
+       34,   46,    0,    0,    0,   33,   14,   10,   15,   53,
+        0,   53,   53,   53,   53,   53,   53,   53,   53,   19,
+       53,   53,   53,   53,   53,   53,   17,    0,    0,   53,
+       47,    0,   45,    0,    0,    0,    0,   53,   53,   53,
 
-       52,   52,   52,   52,   21,   28,   52,   52,   52,   52,
-       52,    0,   52,   46,    0,   54,    0,   52,   23,   30,
-       52,   52,   19,   52,   52,   52,   52,   31,   52,    0,
-       52,    0,    0,   25,   52,   52,   29,   52,   52,   52,
-       20,    0,   52,    0,    0,    0,    0,   52,   52,   42,
-       27,   22,    0,    0,    0,    0,    1,    0,   52,   24,
-        0,    0,    0,   26,    0,    0,    0,    0,    0,    0,
-        0,    0,   53,    0,    0,    0,   53,    0,    0,    0,
-        0,    0,   34,    0
+       53,   53,   53,   53,   22,   29,   53,   53,   53,   53,
+       53,    0,   53,   47,    0,   55,    0,   53,   24,   31,
+       53,   53,   20,   53,   53,   53,   53,   32,   53,    0,
+       53,    0,    0,   26,   53,   53,   30,   53,   53,   53,
+       21,    0,   53,    0,    0,    0,    0,   53,   53,   43,
+       28,   23,    0,    0,    0,    0,    1,    0,   53,   25,
+        0,    0,    0,   27,    0,    0,    0,    0,    0,    0,
+        0,    0,   54,    0,    0,    0,   54,    0,    0,    0,
+        0,    0,   35,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -927,8 +927,14 @@ YY_RULE_SETUP
 }
 	YY_BREAK
 case 2:
+/* rule 2 can match eol */
 YY_RULE_SETUP
 #line 47 "q1.l"
+{line++;}
+	YY_BREAK
+case 3:
+YY_RULE_SETUP
+#line 49 "q1.l"
 {
     printf("PLUSPLUS\n");
     sprintf(symbol_table[si][0],"%d",line);
@@ -938,9 +944,9 @@ YY_RULE_SETUP
     return PLUSPLUS;
 }
 	YY_BREAK
-case 3:
+case 4:
 YY_RULE_SETUP
-#line 56 "q1.l"
+#line 58 "q1.l"
 {
     printf("plus\n");
     sprintf(symbol_table[si][0],"%d",line);
@@ -950,9 +956,9 @@ YY_RULE_SETUP
     return PLUS;
 }
 	YY_BREAK
-case 4:
+case 5:
 YY_RULE_SETUP
-#line 65 "q1.l"
+#line 67 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "-");
@@ -961,9 +967,9 @@ YY_RULE_SETUP
     return MINUS;
 }
 	YY_BREAK
-case 5:
+case 6:
 YY_RULE_SETUP
-#line 73 "q1.l"
+#line 75 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "*");
@@ -972,9 +978,9 @@ YY_RULE_SETUP
     return MULT;
 }
 	YY_BREAK
-case 6:
+case 7:
 YY_RULE_SETUP
-#line 81 "q1.l"
+#line 83 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "/");
@@ -983,9 +989,9 @@ YY_RULE_SETUP
     return DIV;
 }
 	YY_BREAK
-case 7:
+case 8:
 YY_RULE_SETUP
-#line 89 "q1.l"
+#line 91 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "%");
@@ -994,9 +1000,9 @@ YY_RULE_SETUP
     return MOD;
 }
 	YY_BREAK
-case 8:
+case 9:
 YY_RULE_SETUP
-#line 97 "q1.l"
+#line 99 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "=");
@@ -1006,9 +1012,9 @@ YY_RULE_SETUP
     return ASSIGNMENT;
 }
 	YY_BREAK
-case 9:
+case 10:
 YY_RULE_SETUP
-#line 106 "q1.l"
+#line 108 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "==");
@@ -1017,9 +1023,9 @@ YY_RULE_SETUP
     return EQUALS;
 }
 	YY_BREAK
-case 10:
+case 11:
 YY_RULE_SETUP
-#line 114 "q1.l"
+#line 116 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "!=");
@@ -1028,9 +1034,9 @@ YY_RULE_SETUP
     return NOTEQ;
 }
 	YY_BREAK
-case 11:
+case 12:
 YY_RULE_SETUP
-#line 122 "q1.l"
+#line 124 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "<");
@@ -1039,9 +1045,9 @@ YY_RULE_SETUP
     return LT;
 }
 	YY_BREAK
-case 12:
+case 13:
 YY_RULE_SETUP
-#line 130 "q1.l"
+#line 132 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], ">");
@@ -1050,9 +1056,9 @@ YY_RULE_SETUP
     return GT;
 }
 	YY_BREAK
-case 13:
+case 14:
 YY_RULE_SETUP
-#line 138 "q1.l"
+#line 140 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "<=");
@@ -1061,9 +1067,9 @@ YY_RULE_SETUP
     return LTE;
 }
 	YY_BREAK
-case 14:
+case 15:
 YY_RULE_SETUP
-#line 146 "q1.l"
+#line 148 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], ">=");
@@ -1072,9 +1078,9 @@ YY_RULE_SETUP
     return GTE;
 }
 	YY_BREAK
-case 15:
+case 16:
 YY_RULE_SETUP
-#line 154 "q1.l"
+#line 156 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "&&");
@@ -1083,9 +1089,9 @@ YY_RULE_SETUP
     return LAND;
 }
 	YY_BREAK
-case 16:
+case 17:
 YY_RULE_SETUP
-#line 162 "q1.l"
+#line 164 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "||");
@@ -1094,9 +1100,9 @@ YY_RULE_SETUP
     return LOR;
 }
 	YY_BREAK
-case 17:
+case 18:
 YY_RULE_SETUP
-#line 170 "q1.l"
+#line 172 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "!");
@@ -1105,9 +1111,9 @@ YY_RULE_SETUP
     return LNOT;
 }
 	YY_BREAK
-case 18:
+case 19:
 YY_RULE_SETUP
-#line 178 "q1.l"
+#line 180 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "if");
@@ -1116,9 +1122,9 @@ YY_RULE_SETUP
     return IF;
 }
 	YY_BREAK
-case 19:
+case 20:
 YY_RULE_SETUP
-#line 186 "q1.l"
+#line 188 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "else");
@@ -1127,9 +1133,9 @@ YY_RULE_SETUP
     return ELSE;
 }
 	YY_BREAK
-case 20:
+case 21:
 YY_RULE_SETUP
-#line 194 "q1.l"
+#line 196 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "while");
@@ -1138,9 +1144,9 @@ YY_RULE_SETUP
     return WHILE;
 }
 	YY_BREAK
-case 21:
+case 22:
 YY_RULE_SETUP
-#line 202 "q1.l"
+#line 204 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "for");
@@ -1150,9 +1156,9 @@ YY_RULE_SETUP
     return FOR;
 }
 	YY_BREAK
-case 22:
+case 23:
 YY_RULE_SETUP
-#line 211 "q1.l"
+#line 213 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "switch");
@@ -1161,9 +1167,9 @@ YY_RULE_SETUP
     return SWITCH;
 }
 	YY_BREAK
-case 23:
+case 24:
 YY_RULE_SETUP
-#line 219 "q1.l"
+#line 221 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "case");
@@ -1172,9 +1178,9 @@ YY_RULE_SETUP
     return CASE;
 }
 	YY_BREAK
-case 24:
+case 25:
 YY_RULE_SETUP
-#line 227 "q1.l"
+#line 229 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "default");
@@ -1183,9 +1189,9 @@ YY_RULE_SETUP
     return DEFAULT;
 }
 	YY_BREAK
-case 25:
+case 26:
 YY_RULE_SETUP
-#line 235 "q1.l"
+#line 237 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "break");
@@ -1194,9 +1200,9 @@ YY_RULE_SETUP
     return BREAK;
 }
 	YY_BREAK
-case 26:
+case 27:
 YY_RULE_SETUP
-#line 243 "q1.l"
+#line 245 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "continue");
@@ -1205,9 +1211,9 @@ YY_RULE_SETUP
     return CONTINUE;
 }
 	YY_BREAK
-case 27:
+case 28:
 YY_RULE_SETUP
-#line 251 "q1.l"
+#line 253 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "return");
@@ -1216,9 +1222,9 @@ YY_RULE_SETUP
     return RETURN;
 }
 	YY_BREAK
-case 28:
+case 29:
 YY_RULE_SETUP
-#line 259 "q1.l"
+#line 261 "q1.l"
 {
     printf("INT\n");
     sprintf(symbol_table[si][0], "%d", line);
@@ -1228,9 +1234,9 @@ YY_RULE_SETUP
     return INT;
 }
 	YY_BREAK
-case 29:
+case 30:
 YY_RULE_SETUP
-#line 268 "q1.l"
+#line 270 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "float");
@@ -1239,9 +1245,9 @@ YY_RULE_SETUP
     return FLOAT;
 }
 	YY_BREAK
-case 30:
+case 31:
 YY_RULE_SETUP
-#line 276 "q1.l"
+#line 278 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "char");
@@ -1250,9 +1256,9 @@ YY_RULE_SETUP
     return CHAR;
 }
 	YY_BREAK
-case 31:
+case 32:
 YY_RULE_SETUP
-#line 284 "q1.l"
+#line 286 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "void");
@@ -1261,9 +1267,9 @@ YY_RULE_SETUP
     return VOID;
 }
 	YY_BREAK
-case 32:
+case 33:
 YY_RULE_SETUP
-#line 292 "q1.l"
+#line 294 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], yytext);
@@ -1272,9 +1278,9 @@ YY_RULE_SETUP
     return NUM;
 }
 	YY_BREAK
-case 33:
+case 34:
 YY_RULE_SETUP
-#line 299 "q1.l"
+#line 301 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], yytext);
@@ -1283,9 +1289,9 @@ YY_RULE_SETUP
     return FLOATNUM;
 }
 	YY_BREAK
-case 34:
+case 35:
 YY_RULE_SETUP
-#line 306 "q1.l"
+#line 308 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], yytext);
@@ -1294,9 +1300,9 @@ YY_RULE_SETUP
     return CHARCONST;
 }
 	YY_BREAK
-case 35:
+case 36:
 YY_RULE_SETUP
-#line 314 "q1.l"
+#line 316 "q1.l"
 {
     printf("(");
     sprintf(symbol_table[si][0], "%d", line);
@@ -1307,9 +1313,9 @@ YY_RULE_SETUP
     return LPAREN;
 }
 	YY_BREAK
-case 36:
+case 37:
 YY_RULE_SETUP
-#line 324 "q1.l"
+#line 326 "q1.l"
 {
     printf("RPAREN\n");
     sprintf(symbol_table[si][0], "%d", line);
@@ -1319,9 +1325,9 @@ YY_RULE_SETUP
     return RPAREN;
 }
 	YY_BREAK
-case 37:
+case 38:
 YY_RULE_SETUP
-#line 333 "q1.l"
+#line 335 "q1.l"
 {
     printf("LBRACE\n");
     sprintf(symbol_table[si][0], "%d", line);
@@ -1331,9 +1337,9 @@ YY_RULE_SETUP
     return LBRACE;
 }
 	YY_BREAK
-case 38:
+case 39:
 YY_RULE_SETUP
-#line 342 "q1.l"
+#line 344 "q1.l"
 {
     printf("RBRACE\n");
     sprintf(symbol_table[si][0], "%d", line);
@@ -1343,9 +1349,9 @@ YY_RULE_SETUP
     return RBRACE;
 }
 	YY_BREAK
-case 39:
+case 40:
 YY_RULE_SETUP
-#line 351 "q1.l"
+#line 353 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "[");
@@ -1354,9 +1360,9 @@ YY_RULE_SETUP
     return LBRACKET;
 }
 	YY_BREAK
-case 40:
+case 41:
 YY_RULE_SETUP
-#line 359 "q1.l"
+#line 361 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "]");
@@ -1365,9 +1371,9 @@ YY_RULE_SETUP
     return RBRACKET;
 }
 	YY_BREAK
-case 41:
+case 42:
 YY_RULE_SETUP
-#line 367 "q1.l"
+#line 369 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], ";");
@@ -1377,9 +1383,9 @@ YY_RULE_SETUP
     return SEMICOLON;
 }
 	YY_BREAK
-case 42:
+case 43:
 YY_RULE_SETUP
-#line 376 "q1.l"
+#line 378 "q1.l"
 {
     printf("PRINTF\n");
     sprintf(symbol_table[si][0], "%d", line);
@@ -1389,9 +1395,9 @@ YY_RULE_SETUP
     return PRINTF;
 }
 	YY_BREAK
-case 43:
+case 44:
 YY_RULE_SETUP
-#line 385 "q1.l"
+#line 387 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], ",");
@@ -1400,10 +1406,10 @@ YY_RULE_SETUP
     return COMMA;
 }
 	YY_BREAK
-case 44:
-/* rule 44 can match eol */
+case 45:
+/* rule 45 can match eol */
 YY_RULE_SETUP
-#line 393 "q1.l"
+#line 395 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "yytext");
@@ -1412,14 +1418,14 @@ YY_RULE_SETUP
     return SLCOMMENT;
 }
 	YY_BREAK
-case 45:
-YY_RULE_SETUP
-#line 401 "q1.l"
-BEGIN(MLC);
-	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 402 "q1.l"
+#line 403 "q1.l"
+BEGIN(MLC);
+	YY_BREAK
+case 47:
+YY_RULE_SETUP
+#line 404 "q1.l"
 {
     BEGIN(INITIAL); 
     sprintf(symbol_table[si][0], "%d", line);
@@ -1428,20 +1434,20 @@ YY_RULE_SETUP
     si++;
     return MLCOMMENT;}
 	YY_BREAK
-case 47:
-/* rule 47 can match eol */
-YY_RULE_SETUP
-#line 409 "q1.l"
-{line++;}
-	YY_BREAK
 case 48:
+/* rule 48 can match eol */
 YY_RULE_SETUP
-#line 410 "q1.l"
-{;}
+#line 411 "q1.l"
+{line++;}
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 413 "q1.l"
+#line 412 "q1.l"
+{;}
+	YY_BREAK
+case 50:
+YY_RULE_SETUP
+#line 415 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "%c");
@@ -1450,9 +1456,9 @@ YY_RULE_SETUP
     return CHARFORMAT;
 }
 	YY_BREAK
-case 50:
+case 51:
 YY_RULE_SETUP
-#line 421 "q1.l"
+#line 423 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "%d");
@@ -1461,9 +1467,9 @@ YY_RULE_SETUP
     return INTFORMAT;
 }
 	YY_BREAK
-case 51:
+case 52:
 YY_RULE_SETUP
-#line 429 "q1.l"
+#line 431 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "%f");
@@ -1472,9 +1478,9 @@ YY_RULE_SETUP
     return FLOATFORMAT;
 }
 	YY_BREAK
-case 52:
+case 53:
 YY_RULE_SETUP
-#line 437 "q1.l"
+#line 439 "q1.l"
 {
     printf("ID\n");
     printf("%s",yytext);
@@ -1485,9 +1491,9 @@ YY_RULE_SETUP
     return ID;
 }
 	YY_BREAK
-case 53:
+case 54:
 YY_RULE_SETUP
-#line 447 "q1.l"
+#line 449 "q1.l"
 {
     num_vars = 0;
     num_format = 0;
@@ -1533,9 +1539,9 @@ YY_RULE_SETUP
     return SCANF;
 }
 	YY_BREAK
-case 54:
+case 55:
 YY_RULE_SETUP
-#line 492 "q1.l"
+#line 494 "q1.l"
 {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], yytext);
@@ -1544,10 +1550,10 @@ YY_RULE_SETUP
     return ID1;
 }
 	YY_BREAK
-case 55:
-/* rule 55 can match eol */
+case 56:
+/* rule 56 can match eol */
 YY_RULE_SETUP
-#line 500 "q1.l"
+#line 502 "q1.l"
 {
     printf("STRING\n");
     sprintf(symbol_table[si][0],"%d",line);
@@ -1557,18 +1563,18 @@ YY_RULE_SETUP
     return STRING;
 }
 	YY_BREAK
-case 56:
-/* rule 56 can match eol */
-YY_RULE_SETUP
-#line 508 "q1.l"
-{line++;return *yytext;}
-	YY_BREAK
 case 57:
+/* rule 57 can match eol */
 YY_RULE_SETUP
 #line 510 "q1.l"
+{line++;return *yytext;}
+	YY_BREAK
+case 58:
+YY_RULE_SETUP
+#line 512 "q1.l"
 ECHO;
 	YY_BREAK
-#line 1572 "lex.yy.c"
+#line 1578 "lex.yy.c"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -2574,7 +2580,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 510 "q1.l"
+#line 512 "q1.l"
 
 
 
