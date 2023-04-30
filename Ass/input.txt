@@ -1,1 +1,1 @@
-a+b-c*(g-j /k);
+int solve(int a,int b){}

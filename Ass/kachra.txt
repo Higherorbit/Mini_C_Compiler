@@ -312,3 +312,17 @@ printf\(\".*\"(,{ID})*\); {
     si++;
     return ARR;
 }
+
+
+// 30th may ka kachra
+
+[_a-zA-Z][_a-zA-Z0-9]*\(.*\) {
+    printf("FUNC mei\n");
+    sprintf(symbol_table[si][0],"%d", line);
+    strcpy(symbol_table[si][1], yytext);
+    strcpy(symbol_table[si][2], "FUNC");
+    si++;
+    printf("%s\n",yytext);
+    REJECT;
+    return FUNC;
+}

@@ -23,7 +23,7 @@ spaceCOMP [ \t\n]+
 alpha [A-Za-z]
 digit [0-9]
 und "_"
-STRING [\" [a-zA-Z0-9_%] \"]
+STRING [a-zA-Z0-9_%]
 
 %x MLC
 %%
@@ -35,23 +35,7 @@ STRING [\" [a-zA-Z0-9_%] \"]
     // return END_OF_FILE;
     return 0;
 }
-[_a-zA-Z][_a-zA-Z0-9]*\(.*\) {
-    printf("FUNC mei\n");
-    sprintf(symbol_table[si][0],"%d", line);
-    strcpy(symbol_table[si][1], yytext);
-    strcpy(symbol_table[si][2], "FUNC");
-    si++;
-    printf("%s\n",yytext);
-    REJECT;
-    return FUNC;
-}
-[_a-zA-Z][_a-zA-Z0-9]*\[{NUM}\] {
-    sprintf(symbol_table[si][0], "%d", line);
-    strcpy(symbol_table[si][1], yytext);
-    strcpy(symbol_table[si][2], "ID1");
-    si++;
-    return ID1;
-}
+
 [_a-zA-Z][_a-zA-Z0-9]*\[{NUM}\]\[{NUM}\] {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], yytext);
@@ -60,8 +44,17 @@ STRING [\" [a-zA-Z0-9_%] \"]
     return ID2;
 }
 
+"++" {
+    printf("PLUSPLUS\n");
+    sprintf(symbol_table[si][0],"%d",line);
+    strcpy(symbol_table[si][1] , "++");
+    strcpy(symbol_table[si][2] ,"PLUSPLUS");
+    si++;
+    return PLUSPLUS;
+}
+
 "+" {
-    printf("Idhar luv hai\n");
+    printf("plus\n");
     sprintf(symbol_table[si][0],"%d",line);
     strcpy(symbol_table[si][1] , "+");
     strcpy(symbol_table[si][2] ,"PLUS");
@@ -104,9 +97,10 @@ STRING [\" [a-zA-Z0-9_%] \"]
 "=" {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "=");
-    strcpy(symbol_table[si][2], "EQUAL");
+    strcpy(symbol_table[si][2], "ASSIGNMENT");
     si++;
-    return EQUAL;
+    printf("assignment\n");
+    return ASSIGNMENT;
 }
 
 "==" {
@@ -210,6 +204,7 @@ STRING [\" [a-zA-Z0-9_%] \"]
     strcpy(symbol_table[si][1], "for");
     strcpy(symbol_table[si][2], "FOR");
     si++;
+    printf("for\n");
     return FOR;
 }
 
@@ -294,14 +289,6 @@ STRING [\" [a-zA-Z0-9_%] \"]
     return VOID;
 }
 
-"main" {
-    sprintf(symbol_table[si][0], "%d", line);
-    strcpy(symbol_table[si][1], "main");
-    strcpy(symbol_table[si][2], "MAIN");
-    si++;
-    return MAIN;
-}
-
 [1-9][0-9]* {
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], yytext);
@@ -335,6 +322,7 @@ STRING [\" [a-zA-Z0-9_%] \"]
 }
 
 ")" {
+    printf("RPAREN\n");
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], ")");
     strcpy(symbol_table[si][2], "RPAREN");
@@ -343,6 +331,7 @@ STRING [\" [a-zA-Z0-9_%] \"]
 }
 
 "{" {
+    printf("LBRACE\n");
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "{");
     strcpy(symbol_table[si][2], "LBRACE");
@@ -351,6 +340,7 @@ STRING [\" [a-zA-Z0-9_%] \"]
 }
 
 "}" {
+    printf("RBRACE\n");
     sprintf(symbol_table[si][0], "%d", line);
     strcpy(symbol_table[si][1], "}");
     strcpy(symbol_table[si][2], "RBRACE");
@@ -379,7 +369,17 @@ STRING [\" [a-zA-Z0-9_%] \"]
     strcpy(symbol_table[si][1], ";");
     strcpy(symbol_table[si][2], "SEMICOLON");
     si++;
+    printf("semicolon\n");
     return SEMICOLON;
+}
+
+"printf" {
+    printf("PRINTF\n");
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], "printf");
+    strcpy(symbol_table[si][2], "PRINTF");
+    si++;
+    return PRINTF;
 }
 
 "," {
@@ -388,14 +388,6 @@ STRING [\" [a-zA-Z0-9_%] \"]
     strcpy(symbol_table[si][2], "COMMA");
     si++;
     return COMMA;
-}
-
-"\"" {
-    sprintf(symbol_table[si][0], "%d", line);
-    strcpy(symbol_table[si][1], "\"");
-    strcpy(symbol_table[si][2], "QUOTE");
-    si++;
-    return QUOTE;
 }
 
 \/\/[.^\n]*\n {
@@ -452,14 +444,6 @@ STRING [\" [a-zA-Z0-9_%] \"]
     return ID;
 }
 
-'printf' {
-    sprintf(symbol_table[si][0], "%d", line);
-    strcpy(symbol_table[si][1], "printf");
-    strcpy(symbol_table[si][2], "PRINTF");
-    si++;
-    return PRINTF;
-}
-
 ^{space}scanf{space}\({space}\".*\"{space}(,{space}&{space}{ID}{space})*{space}\){space};{space} {
     num_vars = 0;
     num_format = 0;
@@ -505,6 +489,23 @@ STRING [\" [a-zA-Z0-9_%] \"]
     return SCANF;
 }
 
+[_a-zA-Z][_a-zA-Z0-9]*\[{NUM}\] {
+    sprintf(symbol_table[si][0], "%d", line);
+    strcpy(symbol_table[si][1], yytext);
+    strcpy(symbol_table[si][2], "ID1");
+    si++;
+    return ID1;
+}
+
+"\""[^\"]*"\"" {
+    printf("STRING\n");
+    sprintf(symbol_table[si][0],"%d",line);
+    strcpy(symbol_table[si][1] , """");
+    strcpy(symbol_table[si][2] ,"STRING");
+    si++;
+    return STRING;
+}
 \n {line++;return *yytext;}
+
 %%
 

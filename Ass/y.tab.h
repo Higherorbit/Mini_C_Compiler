@@ -57,58 +57,57 @@ extern int yydebug;
     MULT = 263,
     DIV = 264,
     MOD = 265,
-    EQUAL = 266,
-    NOTEQ = 267,
-    LT = 268,
-    GT = 269,
-    LTE = 270,
-    GTE = 271,
-    LAND = 272,
-    LOR = 273,
-    LNOT = 274,
-    EQUALS = 275,
-    IF = 276,
-    ELSE = 277,
-    WHILE = 278,
-    FOR = 279,
-    SWITCH = 280,
-    CASE = 281,
-    BREAK = 282,
-    DEFAULT = 283,
-    CONTINUE = 284,
-    RETURN = 285,
-    INT = 286,
-    FLOAT = 287,
-    CHAR = 288,
-    VOID = 289,
-    MAIN = 290,
-    PRINTF = 291,
-    SCANF = 292,
-    NUM = 293,
-    FLOATNUM = 294,
-    CHARCONST = 295,
-    CONST_SIGNED = 296,
-    LPAREN = 297,
-    RPAREN = 298,
-    LBRACE = 299,
-    RBRACE = 300,
-    LBRACKET = 301,
-    RBRACKET = 302,
-    SEMICOLON = 303,
-    COMMA = 304,
-    QUOTE = 305,
+    PLUSPLUS = 266,
+    EQUAL = 267,
+    NOTEQ = 268,
+    LT = 269,
+    GT = 270,
+    LTE = 271,
+    GTE = 272,
+    LAND = 273,
+    LOR = 274,
+    LNOT = 275,
+    EQUALS = 276,
+    IF = 277,
+    ELSE = 278,
+    WHILE = 279,
+    FOR = 280,
+    SWITCH = 281,
+    CASE = 282,
+    BREAK = 283,
+    DEFAULT = 284,
+    CONTINUE = 285,
+    RETURN = 286,
+    INT = 287,
+    FLOAT = 288,
+    CHAR = 289,
+    VOID = 290,
+    MAIN = 291,
+    PRINTF = 292,
+    SCANF = 293,
+    NUM = 294,
+    FLOATNUM = 295,
+    CHARCONST = 296,
+    CONST_SIGNED = 297,
+    LPAREN = 298,
+    RPAREN = 299,
+    LBRACE = 300,
+    RBRACE = 301,
+    LBRACKET = 302,
+    RBRACKET = 303,
+    SEMICOLON = 304,
+    COMMA = 305,
     SLCOMMENT = 306,
     MLCOMMENT = 307,
     CHARFORMAT = 308,
     INTFORMAT = 309,
     FLOATFORMAT = 310,
     ARR = 311,
-    FUNC = 312,
-    TDARR = 313,
-    ARR_EHAI = 314,
-    SPACE = 315,
-    ASSIGNMENT = 316,
-    STRING = 317
+    TDARR = 312,
+    ARR_EHAI = 313,
+    SPACE = 314,
+    ASSIGNMENT = 315,
+    STRING = 316
   };
 #endif
 /* Tokens.  */
@@ -120,58 +119,57 @@ extern int yydebug;
 #define MULT 263
 #define DIV 264
 #define MOD 265
-#define EQUAL 266
-#define NOTEQ 267
-#define LT 268
-#define GT 269
-#define LTE 270
-#define GTE 271
-#define LAND 272
-#define LOR 273
-#define LNOT 274
-#define EQUALS 275
-#define IF 276
-#define ELSE 277
-#define WHILE 278
-#define FOR 279
-#define SWITCH 280
-#define CASE 281
-#define BREAK 282
-#define DEFAULT 283
-#define CONTINUE 284
-#define RETURN 285
-#define INT 286
-#define FLOAT 287
-#define CHAR 288
-#define VOID 289
-#define MAIN 290
-#define PRINTF 291
-#define SCANF 292
-#define NUM 293
-#define FLOATNUM 294
-#define CHARCONST 295
-#define CONST_SIGNED 296
-#define LPAREN 297
-#define RPAREN 298
-#define LBRACE 299
-#define RBRACE 300
-#define LBRACKET 301
-#define RBRACKET 302
-#define SEMICOLON 303
-#define COMMA 304
-#define QUOTE 305
+#define PLUSPLUS 266
+#define EQUAL 267
+#define NOTEQ 268
+#define LT 269
+#define GT 270
+#define LTE 271
+#define GTE 272
+#define LAND 273
+#define LOR 274
+#define LNOT 275
+#define EQUALS 276
+#define IF 277
+#define ELSE 278
+#define WHILE 279
+#define FOR 280
+#define SWITCH 281
+#define CASE 282
+#define BREAK 283
+#define DEFAULT 284
+#define CONTINUE 285
+#define RETURN 286
+#define INT 287
+#define FLOAT 288
+#define CHAR 289
+#define VOID 290
+#define MAIN 291
+#define PRINTF 292
+#define SCANF 293
+#define NUM 294
+#define FLOATNUM 295
+#define CHARCONST 296
+#define CONST_SIGNED 297
+#define LPAREN 298
+#define RPAREN 299
+#define LBRACE 300
+#define RBRACE 301
+#define LBRACKET 302
+#define RBRACKET 303
+#define SEMICOLON 304
+#define COMMA 305
 #define SLCOMMENT 306
 #define MLCOMMENT 307
 #define CHARFORMAT 308
 #define INTFORMAT 309
 #define FLOATFORMAT 310
 #define ARR 311
-#define FUNC 312
-#define TDARR 313
-#define ARR_EHAI 314
-#define SPACE 315
-#define ASSIGNMENT 316
-#define STRING 317
+#define TDARR 312
+#define ARR_EHAI 313
+#define SPACE 314
+#define ASSIGNMENT 315
+#define STRING 316
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED

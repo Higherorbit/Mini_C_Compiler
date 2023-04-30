@@ -36,3 +36,5 @@ at 1:07 - we got invalid answer  for the input ,reasons can be:
  - function impl may be wrong\
  - ASSIGNMENT VS ASSIGN(khushil) ki bakchodi
  -symbol table ka imple  - ask golu
+
+Sab galti STRING lex wale ki h
