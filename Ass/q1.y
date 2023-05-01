@@ -30,13 +30,13 @@ int id_cnt = 0;
 %token ID ID1 ID2 NUM FLOATNUM CHARCONST FUNC
 %token LPAREN RPAREN LBRACE RBRACE SEMICOLON COMMA
 
-%left ASSIGNMENT
-%token LAND LOR 
-%token NOTEQ EQUALS
-%token GTE LTE LT GT
+%right ASSIGNMENT
+%left LAND LOR 
+%left NOTEQ EQUALS
+%left GTE LTE LT GT
 %left PLUS MINUS
 %left MULT DIV MOD 
-%token LNOT 
+%right LNOT 
 %%
 start : statement
     ;
