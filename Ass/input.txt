@@ -1,12 +1,15 @@
-int help(int a,int b){  
-    int c=10;
+float help(int a,int b){  
+    int c= a + b;
     return c;
-    }
+}
 
 int main(){
     int a=12;
     int b=8234;
     a=help(a,b);
-    a[10];
+    int arr[0];
+    switch(x){
+        case 10: printf("BYe");
+    }
     return a;
 }

@@ -49,125 +49,124 @@ extern int yydebug;
 # define YYTOKENTYPE
   enum yytokentype
   {
-    SLCOMMENT = 258,
-    MLCOMMENT = 259,
-    CHARFORMAT = 260,
-    INTFORMAT = 261,
-    FLOATFORMAT = 262,
-    STRING = 263,
-    INT = 264,
-    FLOAT = 265,
-    CHAR = 266,
-    VOID = 267,
-    IF = 268,
-    ELSE = 269,
-    WHILE = 270,
-    FOR = 271,
-    SWITCH = 272,
-    CASE = 273,
-    BREAK = 274,
-    DEFAULT = 275,
-    CONTINUE = 276,
-    RETURN = 277,
-    PRINTF = 278,
-    ID = 279,
-    ID1 = 280,
-    ID2 = 281,
-    NUM = 282,
-    FLOATNUM = 283,
-    CHARCONST = 284,
-    FUNC = 285,
-    LPAREN = 286,
-    RPAREN = 287,
-    LBRACE = 288,
-    RBRACE = 289,
-    SEMICOLON = 290,
-    COMMA = 291,
-    ASSIGNMENT = 292,
-    LAND = 293,
-    LOR = 294,
-    NOTEQ = 295,
-    EQUALS = 296,
-    GTE = 297,
-    LTE = 298,
-    LT = 299,
-    GT = 300,
-    PLUS = 301,
-    MINUS = 302,
-    MULT = 303,
-    DIV = 304,
-    MOD = 305,
-    LNOT = 306
+    CHARFORMAT = 258,
+    INTFORMAT = 259,
+    FLOATFORMAT = 260,
+    STRING = 261,
+    INT = 262,
+    FLOAT = 263,
+    CHAR = 264,
+    VOID = 265,
+    IF = 266,
+    ELSE = 267,
+    WHILE = 268,
+    FOR = 269,
+    SWITCH = 270,
+    CASE = 271,
+    BREAK = 272,
+    DEFAULT = 273,
+    CONTINUE = 274,
+    RETURN = 275,
+    PRINTF = 276,
+    COLON = 277,
+    ID = 278,
+    ID1 = 279,
+    ID2 = 280,
+    NUM = 281,
+    FLOATNUM = 282,
+    CHARCONST = 283,
+    FUNC = 284,
+    LPAREN = 285,
+    RPAREN = 286,
+    LBRACE = 287,
+    RBRACE = 288,
+    SEMICOLON = 289,
+    COMMA = 290,
+    ASSIGNMENT = 291,
+    LAND = 292,
+    LOR = 293,
+    NOTEQ = 294,
+    EQUALS = 295,
+    GTE = 296,
+    LTE = 297,
+    LT = 298,
+    GT = 299,
+    PLUS = 300,
+    MINUS = 301,
+    MULT = 302,
+    DIV = 303,
+    MOD = 304,
+    LNOT = 305
   };
 #endif
 /* Tokens.  */
-#define SLCOMMENT 258
-#define MLCOMMENT 259
-#define CHARFORMAT 260
-#define INTFORMAT 261
-#define FLOATFORMAT 262
-#define STRING 263
-#define INT 264
-#define FLOAT 265
-#define CHAR 266
-#define VOID 267
-#define IF 268
-#define ELSE 269
-#define WHILE 270
-#define FOR 271
-#define SWITCH 272
-#define CASE 273
-#define BREAK 274
-#define DEFAULT 275
-#define CONTINUE 276
-#define RETURN 277
-#define PRINTF 278
-#define ID 279
-#define ID1 280
-#define ID2 281
-#define NUM 282
-#define FLOATNUM 283
-#define CHARCONST 284
-#define FUNC 285
-#define LPAREN 286
-#define RPAREN 287
-#define LBRACE 288
-#define RBRACE 289
-#define SEMICOLON 290
-#define COMMA 291
-#define ASSIGNMENT 292
-#define LAND 293
-#define LOR 294
-#define NOTEQ 295
-#define EQUALS 296
-#define GTE 297
-#define LTE 298
-#define LT 299
-#define GT 300
-#define PLUS 301
-#define MINUS 302
-#define MULT 303
-#define DIV 304
-#define MOD 305
-#define LNOT 306
+#define CHARFORMAT 258
+#define INTFORMAT 259
+#define FLOATFORMAT 260
+#define STRING 261
+#define INT 262
+#define FLOAT 263
+#define CHAR 264
+#define VOID 265
+#define IF 266
+#define ELSE 267
+#define WHILE 268
+#define FOR 269
+#define SWITCH 270
+#define CASE 271
+#define BREAK 272
+#define DEFAULT 273
+#define CONTINUE 274
+#define RETURN 275
+#define PRINTF 276
+#define COLON 277
+#define ID 278
+#define ID1 279
+#define ID2 280
+#define NUM 281
+#define FLOATNUM 282
+#define CHARCONST 283
+#define FUNC 284
+#define LPAREN 285
+#define RPAREN 286
+#define LBRACE 287
+#define RBRACE 288
+#define SEMICOLON 289
+#define COMMA 290
+#define ASSIGNMENT 291
+#define LAND 292
+#define LOR 293
+#define NOTEQ 294
+#define EQUALS 295
+#define GTE 296
+#define LTE 297
+#define LT 298
+#define GT 299
+#define PLUS 300
+#define MINUS 301
+#define MULT 302
+#define DIV 303
+#define MOD 304
+#define LNOT 305
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 44 "q1.y"
+#line 49 "q1.y"
  
-    struct vname { 
+    struct type1 { 
         char name[100]; 
         struct node* nd;
+        int idc;
     } nd_obj;
-    struct vname2 { 
+    struct type2 { 
         char name[100]; 
         struct node* nd;
         char type[6];
     } nd_obj2;
 
-#line 171 "y.tab.h"
+#line 170 "y.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

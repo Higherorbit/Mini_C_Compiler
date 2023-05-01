@@ -16,8 +16,9 @@ FLOAT "float"
 CHAR "char"
 NEWLINE \n
 ID [_a-zA-Z][_a-zA-Z0-9]*
-NUM ([1-9][0-9]*)|0
+NUM ([1-9][0-9]*)|(0)
 space [ \t]*
+STRING \".*\"
 
 %x MLC
 %%
@@ -27,15 +28,6 @@ space [ \t]*
         printf("%s %s %s\n",symbol_table_lex[i][0],symbol_table_lex[i][1],symbol_table_lex[i][2]);
     }
     return 0;
-}
-
-[_a-zA-Z][_a-zA-Z0-9]*\[{NUM}\]\[{NUM}\] {
-    sprintf(symbol_table_lex[si][0], "%d", line);
-    strcpy(symbol_table_lex[si][1], yytext);
-    strcpy(symbol_table_lex[si][2], "ID2");
-    si++;
-    strcpy(yylval.nd_obj.name,(yytext)); 
-    return ID2;
 }
 
 {NEWLINE} {line++;}
@@ -204,23 +196,13 @@ space [ \t]*
     return WHILE;
 }
 
-"for" {
+":" {
     sprintf(symbol_table_lex[si][0], "%d", line);
-    strcpy(symbol_table_lex[si][1], "for");
-    strcpy(symbol_table_lex[si][2], "FOR");
-    si++;
-    // printf("for\n");
-    strcpy(yylval.nd_obj.name,(yytext)); 
-    return FOR;
-}
-
-"switch" {
-    sprintf(symbol_table_lex[si][0], "%d", line);
-    strcpy(symbol_table_lex[si][1], "switch");
-    strcpy(symbol_table_lex[si][2], "SWITCH");
+    strcpy(symbol_table_lex[si][1], ":");
+    strcpy(symbol_table_lex[si][2], "COLON");
     si++;
     strcpy(yylval.nd_obj.name,(yytext)); 
-    return SWITCH;
+    return COLON;
 }
 
 "case" {
@@ -314,7 +296,7 @@ space [ \t]*
     return NUM;
 }
 
-[0-9]*\.[0-9]+ {
+-?(([0-9]+)|([0-9]*\.[0-9]+)([eE][-+]?[0-9]+)?) {
     sprintf(symbol_table_lex[si][0], "%d", line);
     strcpy(symbol_table_lex[si][1], yytext);
     strcpy(symbol_table_lex[si][2], "FLOATNUM");
@@ -383,16 +365,6 @@ space [ \t]*
     return SEMICOLON;
 }
 
-"printf" {
-    // printf("PRINTF\n");
-    sprintf(symbol_table_lex[si][0], "%d", line);
-    strcpy(symbol_table_lex[si][1], "printf");
-    strcpy(symbol_table_lex[si][2], "PRINTF");
-    si++;
-    strcpy(yylval.nd_obj.name,(yytext));
-    return PRINTF;
-}
-
 "," {
     sprintf(symbol_table_lex[si][0], "%d", line);
     strcpy(symbol_table_lex[si][1], ",");
@@ -402,27 +374,81 @@ space [ \t]*
     return COMMA;
 }
 
-\/\/[.^\n]*\n {
-    sprintf(symbol_table_lex[si][0], "%d", line);
-    strcpy(symbol_table_lex[si][1], "yytext");
-    strcpy(symbol_table_lex[si][2], "SLCOMMENT");
-    si++;
-    strcpy(yylval.nd_obj.name,(yytext));
-    return SLCOMMENT;
-}
+\/\/.* {line++;};
 
 {space}"/*" BEGIN(MLC);
 <MLC>"*/"{space} {
-    BEGIN(INITIAL); 
-    sprintf(symbol_table_lex[si][0], "%d", line);
-    strcpy(symbol_table_lex[si][1], yytext);
-    strcpy(symbol_table_lex[si][2], "MLCOMMENT");
-    si++;
-    strcpy(yylval.nd_obj.name,(yytext));
-    return MLCOMMENT;}
+    BEGIN(INITIAL);
+}
 <MLC>\n {line++;}
 <MLC>. {;}
 
+{ID}{space}"(" {
+    //COUNT NUMBER OF WHITESPACES
+    int i=0,j=0;
+    int white_space = 0;
+    char strr[100];
+    
+    while(i < yyleng){
+        if(yytext[i] == ' ' || yytext[i] == '\t')
+            white_space++;
+        else{
+            strr[j] = yytext[i];
+            // printf("char = %c\n",strr[j]);
+            j++;
+        }
+        i++;
+    }
+    strr[j] = '\0';
+    if(strcmp("if(", strr)==0) {
+        // printf("IF\n");
+        sprintf(symbol_table_lex[si][0], "%d", line);
+        strcpy(symbol_table_lex[si][1], "if");
+        strcpy(symbol_table_lex[si][2], "IF");
+        strcpy(yylval.nd_obj.name,(yytext));
+        si++;
+        return IF;
+    } else if(strcmp("printf(", strr)==0){
+        // printf("PRINTF\n");
+        sprintf(symbol_table_lex[si][0], "%d", line);
+        strcpy(symbol_table_lex[si][1], "printf");
+        strcpy(symbol_table_lex[si][2], "PRINTF");
+        strcpy(yylval.nd_obj.name,(yytext));
+        si++;
+        return PRINTF;
+    } else if(strcmp("switch(", strr)==0){
+        // printf("SWITCH\n");
+        sprintf(symbol_table_lex[si][0], "%d", line);
+        strcpy(symbol_table_lex[si][1], "switch");
+        strcpy(symbol_table_lex[si][2], "SWITCH");
+        strcpy(yylval.nd_obj.name,(yytext));
+        si++;
+        return SWITCH;
+    } else if(strcmp("for(", strr)==0){
+        // printf("FOR\n");
+        sprintf(symbol_table_lex[si][0], "%d", line);
+        strcpy(symbol_table_lex[si][1], "for");
+        strcpy(symbol_table_lex[si][2], "FOR");
+        strcpy(yylval.nd_obj.name,(yytext));
+        si++;
+        return FOR;
+    } else if(strcmp("while(", strr)==0){
+            // printf("WHILE\n");
+            sprintf(symbol_table_lex[si][0], "%d", line);
+            strcpy(symbol_table_lex[si][1], "while");
+            strcpy(symbol_table_lex[si][2], "WHILE");
+            strcpy(yylval.nd_obj.name,(yytext));
+            si++;
+            return WHILE;
+    }
+    // printf("FUNC\n");
+    sprintf(symbol_table_lex[si][0], "%d", line);
+    strcpy(symbol_table_lex[si][1], yytext);
+    strcpy(symbol_table_lex[si][2], "FUNC");
+    strcpy(yylval.nd_obj.name,(yytext));
+    si++;
+    return FUNC;
+}
 
 "%c" {
     sprintf(symbol_table_lex[si][0], "%d", line);
@@ -451,18 +477,6 @@ space [ \t]*
     return FLOATFORMAT;
 }
 
-{ID}"(" {
-    // printf("FUNC\n");
-    // printf("%s",yytext);
-    sprintf(symbol_table_lex[si][0], "%d", line);
-    strcpy(symbol_table_lex[si][1], yytext);
-    strcpy(symbol_table_lex[si][2], "FUNC");
-    si++;
-    strcpy(yylval.nd_obj.name,(yytext)); 
-    strcpy(yylval.nd_obj.name,(yytext));
-    return FUNC;
-}
-
 {ID} {
     // printf("ID\n");
     // printf("%s",yytext);
@@ -484,8 +498,18 @@ space [ \t]*
     return ID1;
 }
 
-"\""[^\"]*"\"" {
-    // printf("STRING\n");
+
+[_a-zA-Z][_a-zA-Z0-9]*\[({NUM}|{ID})\]\[({NUM}|{ID})\] {
+    sprintf(symbol_table_lex[si][0], "%d", line);
+    strcpy(symbol_table_lex[si][1], yytext);
+    strcpy(symbol_table_lex[si][2], "ID2");
+    si++;
+    strcpy(yylval.nd_obj.name,(yytext)); 
+    return ID2;
+}
+
+{STRING} {
+    // printf("STRING matched:%s\n", yytext);
     sprintf(symbol_table_lex[si][0],"%d",line);
     strcpy(symbol_table_lex[si][1] , """");
     strcpy(symbol_table_lex[si][2] ,"STRING");
