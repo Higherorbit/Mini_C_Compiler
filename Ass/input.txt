@@ -1,5 +1,5 @@
 int help(int a,int b){  
-    int c=a+b;
+    int c=10;
     return c;
     }
 

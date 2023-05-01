@@ -26,7 +26,6 @@ space [ \t]*
     for(int i = 0;i<si;i++){
         printf("%s %s %s\n",symbol_table_lex[i][0],symbol_table_lex[i][1],symbol_table_lex[i][2]);
     }
-    // return END_OF_FILE;
     return 0;
 }
 
@@ -35,17 +34,19 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], yytext);
     strcpy(symbol_table_lex[si][2], "ID2");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext)); 
     return ID2;
 }
 
 {NEWLINE} {line++;}
 
 "+" {
-    printf("plus\n");
+    // printf("plus\n");
     sprintf(symbol_table_lex[si][0],"%d",line);
     strcpy(symbol_table_lex[si][1] , "+");
     strcpy(symbol_table_lex[si][2] ,"PLUS");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext)); 
     return PLUS;
 }
 
@@ -54,6 +55,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "-");
     strcpy(symbol_table_lex[si][2], "MINUS");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext)); 
     return MINUS;
 }
 
@@ -62,6 +64,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "*");
     strcpy(symbol_table_lex[si][2], "MULT");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext)); 
     return MULT;
 }
 
@@ -70,6 +73,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "/");
     strcpy(symbol_table_lex[si][2], "DIV");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext)); 
     return DIV;
 }
 
@@ -78,6 +82,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "%");
     strcpy(symbol_table_lex[si][2], "MOD");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext)); 
     return MOD;
 }
 
@@ -86,7 +91,8 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "=");
     strcpy(symbol_table_lex[si][2], "ASSIGNMENT");
     si++;
-    printf("assignment\n");
+    // printf("assignment\n");
+    strcpy(yylval.nd_obj.name,(yytext)); 
     return ASSIGNMENT;
 }
 
@@ -95,6 +101,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "==");
     strcpy(symbol_table_lex[si][2], "EQUALS");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext)); 
     return EQUALS;
 }
 
@@ -103,6 +110,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "!=");
     strcpy(symbol_table_lex[si][2], "NOTEQ");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext)); 
     return NOTEQ;
 }
 
@@ -111,6 +119,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "<");
     strcpy(symbol_table_lex[si][2], "LT");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext)); 
     return LT;
 }
 
@@ -119,6 +128,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], ">");
     strcpy(symbol_table_lex[si][2], "GT");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext)); 
     return GT;
 }
 
@@ -127,6 +137,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "<=");
     strcpy(symbol_table_lex[si][2], "LTE");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext)); 
     return LTE;
 }
 
@@ -135,6 +146,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], ">=");
     strcpy(symbol_table_lex[si][2], "GTE");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext)); 
     return GTE;
 }
 
@@ -143,6 +155,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "&&");
     strcpy(symbol_table_lex[si][2], "LAND");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext)); 
     return LAND;
 }
 
@@ -151,6 +164,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "||");
     strcpy(symbol_table_lex[si][2], "LOR");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext)); 
     return LOR;
 }
 
@@ -159,6 +173,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "!");
     strcpy(symbol_table_lex[si][2], "LNOT");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext)); 
     return LNOT;
 }
 
@@ -167,6 +182,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "if");
     strcpy(symbol_table_lex[si][2], "IF");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext)); 
     return IF;
 }
 
@@ -175,6 +191,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "else");
     strcpy(symbol_table_lex[si][2], "ELSE");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext)); 
     return ELSE;
 }
 
@@ -183,6 +200,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "while");
     strcpy(symbol_table_lex[si][2], "WHILE");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext)); 
     return WHILE;
 }
 
@@ -191,7 +209,8 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "for");
     strcpy(symbol_table_lex[si][2], "FOR");
     si++;
-    printf("for\n");
+    // printf("for\n");
+    strcpy(yylval.nd_obj.name,(yytext)); 
     return FOR;
 }
 
@@ -200,6 +219,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "switch");
     strcpy(symbol_table_lex[si][2], "SWITCH");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext)); 
     return SWITCH;
 }
 
@@ -208,6 +228,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "case");
     strcpy(symbol_table_lex[si][2], "CASE");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext)); 
     return CASE;
 }
 
@@ -216,6 +237,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "default");
     strcpy(symbol_table_lex[si][2], "DEFAULT");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext)); 
     return DEFAULT;
 }
 
@@ -224,6 +246,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "break");
     strcpy(symbol_table_lex[si][2], "BREAK");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext)); 
     return BREAK;
 }
 
@@ -232,6 +255,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "continue");
     strcpy(symbol_table_lex[si][2], "CONTINUE");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext)); 
     return CONTINUE;
 }
 
@@ -240,15 +264,17 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "return");
     strcpy(symbol_table_lex[si][2], "RETURN");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext)); 
     return RETURN;
 }
 
 {INT} {
-    printf("INT\n");
+    // printf("INT\n");
     sprintf(symbol_table_lex[si][0], "%d", line);
     strcpy(symbol_table_lex[si][1], "int");
     strcpy(symbol_table_lex[si][2], "INT");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext));
     return INT;
 }
 
@@ -257,6 +283,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "float");
     strcpy(symbol_table_lex[si][2], "FLOAT");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext));
     return FLOAT;
 }
 
@@ -265,6 +292,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "char");
     strcpy(symbol_table_lex[si][2], "CHAR");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext));
     return CHAR;
 }
 
@@ -273,6 +301,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "void");
     strcpy(symbol_table_lex[si][2], "VOID");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext));
     return VOID;
 }
 
@@ -281,57 +310,66 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], yytext);
     strcpy(symbol_table_lex[si][2], "NUM");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext));
     return NUM;
 }
+
 [0-9]*\.[0-9]+ {
     sprintf(symbol_table_lex[si][0], "%d", line);
     strcpy(symbol_table_lex[si][1], yytext);
     strcpy(symbol_table_lex[si][2], "FLOATNUM");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext));
     return FLOATNUM;
 }
+
 "\'[a-zA-Z0-9]\'" {
     sprintf(symbol_table_lex[si][0], "%d", line);
     strcpy(symbol_table_lex[si][1], yytext);
     strcpy(symbol_table_lex[si][2], "CHARCONST");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext));
     return CHARCONST;
 }
 
 "(" {
-    printf("(");
+    // printf("(");
     sprintf(symbol_table_lex[si][0], "%d", line);
     strcpy(symbol_table_lex[si][1], "(");
     strcpy(symbol_table_lex[si][2], "LPAREN");
     si++;
-    printf("LPAREN\n");
+    // printf("LPAREN\n");
+    strcpy(yylval.nd_obj.name,(yytext));
     return LPAREN;
 }
 
 ")" {
-    printf("RPAREN\n");
+    // printf("RPAREN\n");
     sprintf(symbol_table_lex[si][0], "%d", line);
     strcpy(symbol_table_lex[si][1], ")");
     strcpy(symbol_table_lex[si][2], "RPAREN");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext));
     return RPAREN;
 }
 
 "{" {
-    printf("LBRACE\n");
+    // printf("LBRACE\n");
     sprintf(symbol_table_lex[si][0], "%d", line);
     strcpy(symbol_table_lex[si][1], "{");
     strcpy(symbol_table_lex[si][2], "LBRACE");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext));
     return LBRACE;
 }
 
 "}" {
-    printf("RBRACE\n");
+    // printf("RBRACE\n");
     sprintf(symbol_table_lex[si][0], "%d", line);
     strcpy(symbol_table_lex[si][1], "}");
     strcpy(symbol_table_lex[si][2], "RBRACE");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext));
     return RBRACE;
 }
 
@@ -340,16 +378,18 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], ";");
     strcpy(symbol_table_lex[si][2], "SEMICOLON");
     si++;
-    printf("semicolon\n");
+    // printf("semicolon\n");
+    strcpy(yylval.nd_obj.name,(yytext));
     return SEMICOLON;
 }
 
 "printf" {
-    printf("PRINTF\n");
+    // printf("PRINTF\n");
     sprintf(symbol_table_lex[si][0], "%d", line);
     strcpy(symbol_table_lex[si][1], "printf");
     strcpy(symbol_table_lex[si][2], "PRINTF");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext));
     return PRINTF;
 }
 
@@ -358,6 +398,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], ",");
     strcpy(symbol_table_lex[si][2], "COMMA");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext));
     return COMMA;
 }
 
@@ -366,6 +407,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "yytext");
     strcpy(symbol_table_lex[si][2], "SLCOMMENT");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext));
     return SLCOMMENT;
 }
 
@@ -376,6 +418,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], yytext);
     strcpy(symbol_table_lex[si][2], "MLCOMMENT");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext));
     return MLCOMMENT;}
 <MLC>\n {line++;}
 <MLC>. {;}
@@ -386,6 +429,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "%c");
     strcpy(symbol_table_lex[si][2], "CHARFORMAT");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext));
     return CHARFORMAT;
 }
 
@@ -394,6 +438,7 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "%d");
     strcpy(symbol_table_lex[si][2], "INTFORMAT");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext));
     return INTFORMAT;
 }
 
@@ -402,46 +447,50 @@ space [ \t]*
     strcpy(symbol_table_lex[si][1], "%f");
     strcpy(symbol_table_lex[si][2], "FLOATFORMAT");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext));
     return FLOATFORMAT;
 }
 
 {ID}"(" {
-    printf("FUNC\n");
-    printf("%s",yytext);
+    // printf("FUNC\n");
+    // printf("%s",yytext);
     sprintf(symbol_table_lex[si][0], "%d", line);
     strcpy(symbol_table_lex[si][1], yytext);
     strcpy(symbol_table_lex[si][2], "FUNC");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext)); 
+    strcpy(yylval.nd_obj.name,(yytext));
     return FUNC;
 }
 
 {ID} {
-    printf("ID\n");
-    printf("%s",yytext);
+    // printf("ID\n");
+    // printf("%s",yytext);
     sprintf(symbol_table_lex[si][0], "%d", line);
     strcpy(symbol_table_lex[si][1], yytext);
     strcpy(symbol_table_lex[si][2], "ID");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext));
     return ID;
 }
-
-
 
 [_a-zA-Z][_a-zA-Z0-9]*\[({NUM}|{ID})\] {
     sprintf(symbol_table_lex[si][0], "%d", line);
     strcpy(symbol_table_lex[si][1], yytext);
     strcpy(symbol_table_lex[si][2], "ID1");
-    printf("Matched %s with ID1\n", yytext);
+    // printf("Matched %s with ID1\n", yytext);
     si++;
+    strcpy(yylval.nd_obj.name,(yytext));
     return ID1;
 }
 
 "\""[^\"]*"\"" {
-    printf("STRING\n");
+    // printf("STRING\n");
     sprintf(symbol_table_lex[si][0],"%d",line);
     strcpy(symbol_table_lex[si][1] , """");
     strcpy(symbol_table_lex[si][2] ,"STRING");
     si++;
+    strcpy(yylval.nd_obj.name,(yytext));
     return STRING;
 }
 
