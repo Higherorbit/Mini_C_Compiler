@@ -49,127 +49,123 @@ extern int yydebug;
 # define YYTOKENTYPE
   enum yytokentype
   {
-    ID = 258,
-    ID1 = 259,
-    ID2 = 260,
-    PLUS = 261,
-    MINUS = 262,
-    MULT = 263,
-    DIV = 264,
-    MOD = 265,
-    PLUSPLUS = 266,
-    EQUAL = 267,
-    NOTEQ = 268,
-    LT = 269,
-    GT = 270,
-    LTE = 271,
-    GTE = 272,
-    LAND = 273,
-    LOR = 274,
-    LNOT = 275,
-    EQUALS = 276,
-    IF = 277,
-    ELSE = 278,
-    WHILE = 279,
-    FOR = 280,
-    SWITCH = 281,
-    CASE = 282,
-    BREAK = 283,
-    DEFAULT = 284,
-    CONTINUE = 285,
-    RETURN = 286,
-    INT = 287,
-    FLOAT = 288,
-    CHAR = 289,
-    VOID = 290,
-    MAIN = 291,
-    PRINTF = 292,
-    SCANF = 293,
-    NUM = 294,
-    FLOATNUM = 295,
-    CHARCONST = 296,
-    CONST_SIGNED = 297,
-    LPAREN = 298,
-    RPAREN = 299,
-    LBRACE = 300,
-    RBRACE = 301,
-    LBRACKET = 302,
-    RBRACKET = 303,
-    SEMICOLON = 304,
-    COMMA = 305,
-    SLCOMMENT = 306,
-    MLCOMMENT = 307,
-    CHARFORMAT = 308,
-    INTFORMAT = 309,
-    FLOATFORMAT = 310,
-    ARR = 311,
-    TDARR = 312,
-    ARR_EHAI = 313,
-    SPACE = 314,
-    ASSIGNMENT = 315,
-    STRING = 316
+    PLUS = 258,
+    MINUS = 259,
+    MULT = 260,
+    DIV = 261,
+    MOD = 262,
+    ID = 263,
+    ID1 = 264,
+    ID2 = 265,
+    EQUAL = 266,
+    NOTEQ = 267,
+    LT = 268,
+    GT = 269,
+    LTE = 270,
+    GTE = 271,
+    LAND = 272,
+    LOR = 273,
+    LNOT = 274,
+    EQUALS = 275,
+    IF = 276,
+    ELSE = 277,
+    WHILE = 278,
+    FOR = 279,
+    SWITCH = 280,
+    CASE = 281,
+    BREAK = 282,
+    DEFAULT = 283,
+    CONTINUE = 284,
+    RETURN = 285,
+    INT = 286,
+    FLOAT = 287,
+    CHAR = 288,
+    VOID = 289,
+    MAIN = 290,
+    PRINTF = 291,
+    NUM = 292,
+    FLOATNUM = 293,
+    CHARCONST = 294,
+    CONST_SIGNED = 295,
+    LPAREN = 296,
+    RPAREN = 297,
+    LBRACE = 298,
+    RBRACE = 299,
+    LBRACKET = 300,
+    RBRACKET = 301,
+    SEMICOLON = 302,
+    COMMA = 303,
+    SLCOMMENT = 304,
+    MLCOMMENT = 305,
+    CHARFORMAT = 306,
+    INTFORMAT = 307,
+    FLOATFORMAT = 308,
+    ARR = 309,
+    TDARR = 310,
+    ARR_EHAI = 311,
+    SPACE = 312,
+    ASSIGNMENT = 313,
+    STRING = 314
   };
 #endif
 /* Tokens.  */
-#define ID 258
-#define ID1 259
-#define ID2 260
-#define PLUS 261
-#define MINUS 262
-#define MULT 263
-#define DIV 264
-#define MOD 265
-#define PLUSPLUS 266
-#define EQUAL 267
-#define NOTEQ 268
-#define LT 269
-#define GT 270
-#define LTE 271
-#define GTE 272
-#define LAND 273
-#define LOR 274
-#define LNOT 275
-#define EQUALS 276
-#define IF 277
-#define ELSE 278
-#define WHILE 279
-#define FOR 280
-#define SWITCH 281
-#define CASE 282
-#define BREAK 283
-#define DEFAULT 284
-#define CONTINUE 285
-#define RETURN 286
-#define INT 287
-#define FLOAT 288
-#define CHAR 289
-#define VOID 290
-#define MAIN 291
-#define PRINTF 292
-#define SCANF 293
-#define NUM 294
-#define FLOATNUM 295
-#define CHARCONST 296
-#define CONST_SIGNED 297
-#define LPAREN 298
-#define RPAREN 299
-#define LBRACE 300
-#define RBRACE 301
-#define LBRACKET 302
-#define RBRACKET 303
-#define SEMICOLON 304
-#define COMMA 305
-#define SLCOMMENT 306
-#define MLCOMMENT 307
-#define CHARFORMAT 308
-#define INTFORMAT 309
-#define FLOATFORMAT 310
-#define ARR 311
-#define TDARR 312
-#define ARR_EHAI 313
-#define SPACE 314
-#define ASSIGNMENT 315
-#define STRING 316
+#define PLUS 258
+#define MINUS 259
+#define MULT 260
+#define DIV 261
+#define MOD 262
+#define ID 263
+#define ID1 264
+#define ID2 265
+#define EQUAL 266
+#define NOTEQ 267
+#define LT 268
+#define GT 269
+#define LTE 270
+#define GTE 271
+#define LAND 272
+#define LOR 273
+#define LNOT 274
+#define EQUALS 275
+#define IF 276
+#define ELSE 277
+#define WHILE 278
+#define FOR 279
+#define SWITCH 280
+#define CASE 281
+#define BREAK 282
+#define DEFAULT 283
+#define CONTINUE 284
+#define RETURN 285
+#define INT 286
+#define FLOAT 287
+#define CHAR 288
+#define VOID 289
+#define MAIN 290
+#define PRINTF 291
+#define NUM 292
+#define FLOATNUM 293
+#define CHARCONST 294
+#define CONST_SIGNED 295
+#define LPAREN 296
+#define RPAREN 297
+#define LBRACE 298
+#define RBRACE 299
+#define LBRACKET 300
+#define RBRACKET 301
+#define SEMICOLON 302
+#define COMMA 303
+#define SLCOMMENT 304
+#define MLCOMMENT 305
+#define CHARFORMAT 306
+#define INTFORMAT 307
+#define FLOATFORMAT 308
+#define ARR 309
+#define TDARR 310
+#define ARR_EHAI 311
+#define SPACE 312
+#define ASSIGNMENT 313
+#define STRING 314
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
