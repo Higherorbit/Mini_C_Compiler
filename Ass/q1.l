@@ -46,15 +46,6 @@ STRING [a-zA-Z0-9_%]
 
 {NEWLINE} {line++;}
 
-"++" {
-    printf("PLUSPLUS\n");
-    sprintf(symbol_table[si][0],"%d",line);
-    strcpy(symbol_table[si][1] , "++");
-    strcpy(symbol_table[si][2] ,"PLUSPLUS");
-    si++;
-    return PLUSPLUS;
-}
-
 "+" {
     printf("plus\n");
     sprintf(symbol_table[si][0],"%d",line);
@@ -446,50 +437,7 @@ STRING [a-zA-Z0-9_%]
     return ID;
 }
 
-^{space}scanf{space}\({space}\".*\"{space}(,{space}&{space}{ID}{space})*{space}\){space};{space} {
-    num_vars = 0;
-    num_format = 0;
-    printf("%s\n",yytext);
-    int i = 8;
-    while(i<yyleng && yytext[i]!='"'){
-        if(yytext[i]=='%'){
-            printf("ghus gaye");
-            if(yytext[i +1]=='c' || yytext[i+1]=='d' || yytext[i+1]=='f'){
-                num_format++;
-            }
-            else{
-                yyerror("Invalid scanf statement");
-            }
-        }  
-        i++;
-    }
-    printf("\nNUM FORMAT %d",num_format);
-    i++;
-    printf("%c\n",yytext[i]);
-    // print the length of yytext
-    printf("%d\n",yyleng);
-     if(yytext[i]==','){
-        printf("ghus gaye\n");
-         while(i<yyleng-1 && yytext[i]!=')'){
-            printf("while m ghus gaye\n");
-            if(yytext[i]==','){
-                num_vars++;
-            }
-            i++;
-         }
-     }
-    printf("\nNUM var %d",num_vars);
 
-     if(yytext[i] != ')') {
-        yyerror("Invalid scanf statement");
-     }
-     if(num_vars!=num_format){
-         
-        yyerror("Invalid scanf statement");
-     }
-    printf("Waleed");
-    return SCANF;
-}
 
 [_a-zA-Z][_a-zA-Z0-9]*\[{NUM}\] {
     sprintf(symbol_table[si][0], "%d", line);
@@ -507,7 +455,6 @@ STRING [a-zA-Z0-9_%]
     si++;
     return STRING;
 }
-\n {line++;return *yytext;}
 
 %%
 
