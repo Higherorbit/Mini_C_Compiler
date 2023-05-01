@@ -16,14 +16,8 @@ FLOAT "float"
 CHAR "char"
 NEWLINE \n
 ID [_a-zA-Z][_a-zA-Z0-9]*
-PRINTFID [_a-zA-Z][_a-zA-Z0-9]*['['{NUM}']']*
-NUM [0-9][1-9]*|0|" "
+NUM ([1-9][0-9]*)|0
 space [ \t]*
-spaceCOMP [ \t\n]+
-alpha [A-Za-z]
-digit [0-9]
-und "_"
-STRING [a-zA-Z0-9_%]
 
 %x MLC
 %%
@@ -274,7 +268,7 @@ STRING [a-zA-Z0-9_%]
     return CHAR;
 }
 
-"void" {
+{VOID} {
     sprintf(symbol_table_lex[si][0], "%d", line);
     strcpy(symbol_table_lex[si][1], "void");
     strcpy(symbol_table_lex[si][2], "VOID");
@@ -339,22 +333,6 @@ STRING [a-zA-Z0-9_%]
     strcpy(symbol_table_lex[si][2], "RBRACE");
     si++;
     return RBRACE;
-}
-
-"[" {
-    sprintf(symbol_table_lex[si][0], "%d", line);
-    strcpy(symbol_table_lex[si][1], "[");
-    strcpy(symbol_table_lex[si][2], "LBRACKET");
-    si++;
-    return LBRACKET;
-}
-
-"]" {
-    sprintf(symbol_table_lex[si][0], "%d", line);
-    strcpy(symbol_table_lex[si][1], "]");
-    strcpy(symbol_table_lex[si][2], "RBRACKET");
-    si++;
-    return RBRACKET;
 }
 
 ";" {
@@ -427,6 +405,16 @@ STRING [a-zA-Z0-9_%]
     return FLOATFORMAT;
 }
 
+{ID}"(" {
+    printf("FUNC\n");
+    printf("%s",yytext);
+    sprintf(symbol_table_lex[si][0], "%d", line);
+    strcpy(symbol_table_lex[si][1], yytext);
+    strcpy(symbol_table_lex[si][2], "FUNC");
+    si++;
+    return FUNC;
+}
+
 {ID} {
     printf("ID\n");
     printf("%s",yytext);
@@ -439,10 +427,11 @@ STRING [a-zA-Z0-9_%]
 
 
 
-[_a-zA-Z][_a-zA-Z0-9]*\[{NUM}\] {
+[_a-zA-Z][_a-zA-Z0-9]*\[({NUM}|{ID})\] {
     sprintf(symbol_table_lex[si][0], "%d", line);
     strcpy(symbol_table_lex[si][1], yytext);
     strcpy(symbol_table_lex[si][2], "ID1");
+    printf("Matched %s with ID1\n", yytext);
     si++;
     return ID1;
 }
